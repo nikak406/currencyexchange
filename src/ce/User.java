@@ -1,4 +1,4 @@
-package ce.auth;
+package ce;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

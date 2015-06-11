@@ -1,6 +1,6 @@
-package ce.auth.DAO;
+package ce;
 
-import ce.auth.User;
+import ce.User;
 
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;

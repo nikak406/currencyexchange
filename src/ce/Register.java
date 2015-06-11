@@ -1,4 +1,4 @@
-package ce.auth;
+package ce;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

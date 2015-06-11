@@ -1,6 +1,4 @@
-package ce.auth;
-
-import ce.auth.DAO.UserDAO;
+package ce;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
@@ -22,7 +20,7 @@ import java.util.List;
 public class LoginController implements Serializable{
 
 	@EJB
-	UserDAO userDAO;
+    UserDAO userDAO;
 
 	private UIComponent loginField;
 
