@@ -64,15 +64,15 @@ public class LoginController implements Serializable{
             Cookie[] cookies = request.getCookies();
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("login")) {
-                    cookie.setMaxAge(1);
+                    cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
                 if (cookie.getName().equals("password")) {
-                    cookie.setMaxAge(1);
+                    cookie.setMaxAge(0);
                     response.addCookie(cookie);
                 }
             }
-            fc.getExternalContext().redirect("login.xhtml");
+            fc.getExternalContext().redirect(AuthFilter.LOGIN_URL);
         } catch (IOException ignored) {}
     }
 
@@ -90,7 +90,7 @@ public class LoginController implements Serializable{
                 response.addCookie(passwordCookie);
             }
             try {
-                fc.getExternalContext().redirect("home.xhtml");
+                fc.getExternalContext().redirect("/ce/home.xhtml");
             } catch (IOException ignored) {}
         }
     }
