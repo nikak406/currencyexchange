@@ -1,8 +1,7 @@
 package ce.auth;
 
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @ManagedBean
 public class Login {
@@ -14,6 +13,9 @@ public class Login {
 	private String password;
 
 	private boolean remember;
+
+	@EJB
+	private PasswordHash passwordHash;
 
     public String getLogin() {
         return login;
@@ -28,20 +30,7 @@ public class Login {
     }
 
     public void setPassword(String password) {
-        StringBuffer sb;
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            md.update(password.getBytes());
-            byte byteData[] = md.digest();
-            //convert the byte to hex format
-            sb = new StringBuffer();
-			for (byte aByteData : byteData) {
-				sb.append(Integer.toString((aByteData & 0xff) + 0x100, 16).substring(1));
-			}
-			this.password = sb.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+		this.password = passwordHash.create(password);
     }
 
     public void setHashPassword(String hashPassword){
