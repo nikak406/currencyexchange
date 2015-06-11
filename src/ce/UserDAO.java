@@ -1,7 +1,5 @@
 package ce;
 
-import ce.User;
-
 import javax.ejb.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +17,10 @@ public class UserDAO {
 
 	public void registerUser(User user){
         em.persist(user);
+    }
+
+    public void updateUser(User user){
+        em.refresh(user);
     }
 
 	public List<User> getUsers(){
