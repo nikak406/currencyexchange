@@ -26,14 +26,12 @@ public class User {
         this.name = name;
     }
 
-	public boolean isPasswordCorrect(String password){
+	public boolean isPasswordCorrect(String password){ //TODO: handle exception correctly
         if (this.password.equals(password)) return true;
         else{
             try {
-                Thread.sleep(1000); //incorrect password - broadforce defence
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+                Thread.sleep(1000); //broadforce defence
+            } catch (InterruptedException ignored) {}
             return false;
         }
     }
