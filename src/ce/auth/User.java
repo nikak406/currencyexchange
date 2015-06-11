@@ -9,13 +9,13 @@ public class User {
 
 	@NotNull
     @Id
-    private String login;
+    protected String login;
 
-	private String password;
+	protected String password;
 
-	private String name;
+	protected String name;
 
-	private String email;
+	protected String email;
 
 	public User(){}
 
