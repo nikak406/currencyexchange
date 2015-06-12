@@ -5,7 +5,7 @@ import java.util.Currency;
 import java.util.Date;
 
 @Entity
-public class Order{
+public class ExchangeOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Order{
 
 	private Currency currency;
 
-	private OrderType orderType;
+	private ExchangeOrderType exchangeOrderType;
 
 	private int maxAmount;
 
@@ -28,7 +28,7 @@ public class Order{
 
 	private boolean closed = false;
 
-	public Order(){}
+	public ExchangeOrder(){}
 
 	public int getNumber() {
 		return number;
@@ -62,12 +62,12 @@ public class Order{
 		this.currency = currency;
 	}
 
-	public OrderType getOrderType() {
-		return orderType;
+	public ExchangeOrderType getExchangeOrderType() {
+		return exchangeOrderType;
 	}
 
-	public void setOrderType(OrderType orderType) {
-		this.orderType = orderType;
+	public void setExchangeOrderType(ExchangeOrderType exchangeOrderType) {
+		this.exchangeOrderType = exchangeOrderType;
 	}
 
 	public int getMaxAmount() {
