@@ -9,7 +9,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.List;
 
 @ManagedBean
 @Stateful
@@ -20,10 +19,13 @@ public class LoginController implements Serializable{
 	public static final String HOME_URL = "home.xhtml";
 
 	@EJB
-    UserDAO userDAO;
+	UserController userController;
 
 	@EJB
 	CookiesController cookiesController;
+
+	@EJB
+	FacesContextBean fcb;
 
 	private UIComponent loginField;
 
@@ -31,28 +33,9 @@ public class LoginController implements Serializable{
 
     private String currentUser = null;
 
-    private List<User> getUsers() {
-		return userDAO.getUsers();
-    }
-
-	private FacesContext getFC(){
-		return FacesContext.getCurrentInstance();
-	}
-
-    public boolean containsUser(String login){
-        return (getUser(login) != null);
-    }
-
-	private User getUser(String login){
-        for(User user : getUsers()){
-            if (login.equals(user.getLogin())) return user;
-        }
-        return null;
-	}
-
     public boolean isLoginCorrect(Login login){
-        User user = getUser(login.getLogin());
-        FacesContext fc = getFC();
+        User user = userController.getUser(login.getLogin());
+        FacesContext fc = fcb.getFC();
         if (user == null) {
             fc.addMessage(loginField.getClientId(fc), new FacesMessage("Login is wrong"));
             return false;
@@ -63,44 +46,25 @@ public class LoginController implements Serializable{
     }
 
 	public void logout() { //TODO: get rid of ignored exception
-        FacesContext fc = getFC();
+        FacesContext fc = fcb.getFC();
         currentUser = null;
         try {
-			cookiesController.dropCookies(fc);
+			cookiesController.dropCookies();
             fc.getExternalContext().redirect(LOGIN_URL);
         } catch (IOException ignored) {}
     }
 
 	public void login(Login login){ //TODO: get rid of ignored exception
-        FacesContext fc = getFC();
+        FacesContext fc = fcb.getFC();
         if (isLoginCorrect(login)){
             currentUser = login.getLogin();
             if(login.isRemember()){
-				cookiesController.addCookies(fc, login.getLogin(), login.getPassword());
+				cookiesController.addCookies(login.getLogin(), login.getPassword());
             }
             try {
                 fc.getExternalContext().redirect(HOME_URL);
             } catch (IOException ignored) {}
         }
-    }
-
-	public void register(Register register){ //TODO add check of existing login
-        if (containsUser(register.getLogin())) return;
-        User user = new User(register.getLogin(), register.getPassword(), register.getName(),
-				register.getEmail(), register.getLocation(), register.getRoom(), register.getPhoneNumber());
-        userDAO.registerUser(user);
-        FacesContext fc = getFC();
-        fc.addMessage(null, new FacesMessage("Successfully registered"));
-    }
-
-	public String getUserName(String login){
-        User user = getUser(login);
-        return user.getName();
-    }
-
-	public String getUserEmail(String login) {
-        User user = getUser(login);
-        return user.getEmail();
     }
 
 	public String getCurrentUser() {
@@ -128,8 +92,7 @@ public class LoginController implements Serializable{
     }
 
 	public String tryAutoLogin(){
-        FacesContext fc = getFC();
-		Login login = cookiesController.getCookiesLogin(fc);
+		Login login = cookiesController.getCookiesLogin();
 		if (login != null) login(login);
 		return " ";
     }

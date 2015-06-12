@@ -1,5 +1,6 @@
 package ce;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
@@ -9,26 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 @Stateless
 public class CookiesController {
 
+	@EJB
+	FacesContextBean fcb;
+
 	public static final int ZERO = 0;
 	public static final int MONTH = 60*60*24*30;
 
-	public void dropCookies(FacesContext fc){
-		HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-		Cookie[] cookies = request.getCookies();
-		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("login")) {
-				cookie.setMaxAge(ZERO);
-				response.addCookie(cookie);
-			}
-			if (cookie.getName().equals("password")) {
-				cookie.setMaxAge(ZERO);
-				response.addCookie(cookie);
-			}
-		}
-	}
-
-	public void addCookies(FacesContext fc, String login, String password){
+	public void addCookies(String login, String password){
+		FacesContext fc = fcb.getFC();
 		HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		Cookie loginCookie = new Cookie("login", login);
 		loginCookie.setMaxAge(MONTH);
@@ -38,7 +27,8 @@ public class CookiesController {
 		response.addCookie(passwordCookie);
 	}
 
-	public Login getCookiesLogin(FacesContext fc){
+	public Login getCookiesLogin(){
+		FacesContext fc = fcb.getFC();
 		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
 		//HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		Cookie[] cookies = request.getCookies();
@@ -60,5 +50,22 @@ public class CookiesController {
 			return loginObj;
 		}
 		return null;
+	}
+
+	public void dropCookies(){
+		FacesContext fc = fcb.getFC();
+		HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
+		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if (cookie.getName().equals("login")) {
+				cookie.setMaxAge(ZERO);
+				response.addCookie(cookie);
+			}
+			if (cookie.getName().equals("password")) {
+				cookie.setMaxAge(ZERO);
+				response.addCookie(cookie);
+			}
+		}
 	}
 }
