@@ -8,4 +8,8 @@ import javax.faces.bean.SessionScoped;
 @Stateful
 @SessionScoped
 public class TransactionController {
+
+	//TODO public List<Transaction> getTransactions(User user)
+
+	//TODO public void addTransaction(UserTransaction userTransaction)
 }
