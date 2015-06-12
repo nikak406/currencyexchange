@@ -4,6 +4,9 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
+//TODO override messages regex not matched in xhtml
+//TODO add select instead of inputText for location
+//TODO add regex pattern for phone
 public class Register extends User{
 
     public Register() {}

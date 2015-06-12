@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>Family Site</title>
+    <title>Currency Exchange Registration</title>
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
@@ -32,10 +32,13 @@
         <h:inputText value="#{register.location}" id="location"/>
         <h:message for="location" style="color: red" />
         <h:outputText value="Room:" />
-        <h:inputText value="#{register.room}" id="room"/>
+        <h:inputText value="#{register.room}" id="room">
+            <f:validateRegex pattern="^([1-9][0-9]*)$"/>
+        </h:inputText>
         <h:message for="room" style="color: red" />
         <h:outputText value="Phone:" />
-        <h:inputText value="#{register.phoneNumber}" id="phoneNumber"/>
+        <h:inputText value="#{register.phoneNumber}" id="phoneNumber">
+        </h:inputText>
         <h:message for="phoneNumber" style="color: red" />
         <h:commandButton id="loginButton"
                          action="login"
