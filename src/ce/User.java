@@ -27,11 +27,14 @@ public class User {
 
 	public User(){}
 
-	public User(String login, String password, String name, String email){
+	public User(String login, String password, String name, String email, String location, String room, String phone){
         this.login = login;
         this.password = password;
         this.email = email;
         this.name = name;
+		this.location = location;
+		this.room = room;
+		this.phoneNumber = phone;
     }
 
 	public boolean isPasswordCorrect(String password){ //TODO: handle exception correctly

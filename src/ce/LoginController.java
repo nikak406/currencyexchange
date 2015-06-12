@@ -7,9 +7,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -19,8 +16,14 @@ import java.util.List;
 @SessionScoped
 public class LoginController implements Serializable{
 
+	public static final String LOGIN_URL = "login.xhtml";
+	public static final String HOME_URL = "home.xhtml";
+
 	@EJB
     UserDAO userDAO;
+
+	@EJB
+	CookiesController cookiesController;
 
 	private UIComponent loginField;
 
@@ -31,6 +34,10 @@ public class LoginController implements Serializable{
     private List<User> getUsers() {
 		return userDAO.getUsers();
     }
+
+	private FacesContext getFC(){
+		return FacesContext.getCurrentInstance();
+	}
 
     public boolean containsUser(String login){
         return (getUser(login) != null);
@@ -45,7 +52,7 @@ public class LoginController implements Serializable{
 
     public boolean isLoginCorrect(Login login){
         User user = getUser(login.getLogin());
-        FacesContext fc = FacesContext.getCurrentInstance();
+        FacesContext fc = getFC();
         if (user == null) {
             fc.addMessage(loginField.getClientId(fc), new FacesMessage("Login is wrong"));
             return false;
@@ -56,50 +63,33 @@ public class LoginController implements Serializable{
     }
 
 	public void logout() { //TODO: get rid of ignored exception
-        FacesContext fc = FacesContext.getCurrentInstance();
+        FacesContext fc = getFC();
         currentUser = null;
         try {
-            HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-            HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-            Cookie[] cookies = request.getCookies();
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("login")) {
-                    cookie.setMaxAge(1);
-                    response.addCookie(cookie);
-                }
-                if (cookie.getName().equals("password")) {
-                    cookie.setMaxAge(1);
-                    response.addCookie(cookie);
-                }
-            }
-            fc.getExternalContext().redirect("login.xhtml");
+			cookiesController.dropCookies(fc);
+            fc.getExternalContext().redirect(LOGIN_URL);
         } catch (IOException ignored) {}
     }
 
 	public void login(Login login){ //TODO: get rid of ignored exception
-        FacesContext fc = FacesContext.getCurrentInstance();
+        FacesContext fc = getFC();
         if (isLoginCorrect(login)){
             currentUser = login.getLogin();
             if(login.isRemember()){
-                HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-                Cookie loginCookie = new Cookie("login", login.getLogin());
-                loginCookie.setMaxAge(60 * 60 * 24 * 30); //1 month
-                response.addCookie(loginCookie);
-                Cookie passwordCookie = new Cookie("password", login.getPassword());
-                passwordCookie.setMaxAge(60 * 60 * 24 * 30); //1 month
-                response.addCookie(passwordCookie);
+				cookiesController.addCookies(fc, login.getLogin(), login.getPassword());
             }
             try {
-                fc.getExternalContext().redirect("home.xhtml");
+                fc.getExternalContext().redirect(HOME_URL);
             } catch (IOException ignored) {}
         }
     }
 
-	public void register(Register register){
+	public void register(Register register){ //TODO add check of existing login
         if (containsUser(register.getLogin())) return;
-        User user = new User(register.getLogin(), register.getPassword(), register.getName(), register.getEmail());
+        User user = new User(register.getLogin(), register.getPassword(), register.getName(),
+				register.getEmail(), register.getLocation(), register.getRoom(), register.getPhoneNumber());
         userDAO.registerUser(user);
-        FacesContext fc = FacesContext.getCurrentInstance();
+        FacesContext fc = getFC();
         fc.addMessage(null, new FacesMessage("Successfully registered"));
     }
 
@@ -137,28 +127,10 @@ public class LoginController implements Serializable{
         this.passwordField = passwordField;
     }
 
-	public String tryCookiesLogin(){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-        //HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
-        Cookie[] cookies = request.getCookies();
-        String login = null;
-        String password = null;
-        if (cookies != null) for(Cookie cookie: cookies){
-            if (cookie.getName().equals("login")){
-                login = cookie.getValue();
-            }
-            if (cookie.getName().equals("password")){
-                password = cookie.getValue();
-            }
-        }
-        if ((login != null) && (password != null)){
-            Login loginObj  = new Login();
-            loginObj.setLogin(login);
-            loginObj.setHashPassword(password);
-            loginObj.setRemember(false);
-            login(loginObj);
-        }
-        return " ";
+	public String tryAutoLogin(){
+        FacesContext fc = getFC();
+		Login login = cookiesController.getCookiesLogin(fc);
+		if (login != null) login(login);
+		return " ";
     }
 }

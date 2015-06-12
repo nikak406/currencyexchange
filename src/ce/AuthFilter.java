@@ -16,7 +16,7 @@ public class AuthFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) resp;
         LoginController lc = (LoginController) request.getSession().getAttribute("loginController");
         //String path = request.getRequestURI();
-        if (lc == null || lc.getCurrentUser() == null) response.sendRedirect("login.xhtml");
+        if (lc == null || lc.getCurrentUser() == null) response.sendRedirect(LoginController.LOGIN_URL);
         chain.doFilter(req, resp);
     }
 
