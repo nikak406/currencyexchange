@@ -4,19 +4,25 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //TODO: doesn't work correctly after setting /* url pattern (NPE)
-@WebFilter(filterName = "AuthFilter", urlPatterns = "/nothing.xhtml")
+@WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
 public class AuthFilter implements Filter {
-    public void destroy() {}
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+	public void destroy() {}
+
+    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException{
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
-        LoginController lc = (LoginController) request.getSession().getAttribute("loginController");
-        //String path = request.getRequestURI();
-        if (lc == null || lc.getCurrentUser() == null) response.sendRedirect(LoginController.LOGIN_URL);
+    	HttpSession session = request.getSession();
+		if (session != null){
+			LoginController lc = (LoginController) session.getAttribute("loginController");
+			if (lc == null || lc.getCurrentUser() == null) response.sendRedirect("/login.xhtml");
+		} else {
+			response.sendRedirect("/login.xhtml");
+		}
         chain.doFilter(req, resp);
     }
 

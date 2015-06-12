@@ -15,9 +15,6 @@ import java.io.Serializable;
 @SessionScoped
 public class LoginController implements Serializable{
 
-	public static final String LOGIN_URL = "login.xhtml";
-	public static final String HOME_URL = "home.xhtml";
-
 	@EJB
 	UserController userController;
 
@@ -50,7 +47,7 @@ public class LoginController implements Serializable{
         currentUser = null;
         try {
 			cookiesController.dropCookies();
-            fc.getExternalContext().redirect(LOGIN_URL);
+            fc.getExternalContext().redirect("/login.xhtml");
         } catch (IOException ignored) {}
     }
 
@@ -62,7 +59,7 @@ public class LoginController implements Serializable{
 				cookiesController.addCookies(login.getLogin(), login.getPassword());
             }
             try {
-                fc.getExternalContext().redirect(HOME_URL);
+                fc.getExternalContext().redirect("/ce/home.xhtml");
             } catch (IOException ignored) {}
         }
     }
