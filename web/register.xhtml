@@ -28,6 +28,15 @@
             <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
         </h:inputText>
         <h:message for="email" style="color: red" />
+        <h:outputText value="Location:" />
+        <h:inputText value="#{register.location}" id="location"/>
+        <h:message for="location" style="color: red" />
+        <h:outputText value="Room:" />
+        <h:inputText value="#{register.room}" id="room"/>
+        <h:message for="room" style="color: red" />
+        <h:outputText value="Phone:" />
+        <h:inputText value="#{register.phoneNumber}" id="phoneNumber"/>
+        <h:message for="phoneNumber" style="color: red" />
         <h:commandButton id="loginButton"
                          action="login"
                          value="Register"

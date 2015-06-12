@@ -17,6 +17,14 @@ public class User {
 
 	protected String email;
 
+	protected String location;
+
+	protected String room;
+
+	protected String phoneNumber;
+
+	protected boolean notifyViaMail = false;
+
 	public User(){}
 
 	public User(String login, String password, String name, String email){
@@ -67,4 +75,36 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public boolean isNotifyViaMail() {
+		return notifyViaMail;
+	}
+
+	public void setNotifyViaMail(boolean notifyViaMail) {
+		this.notifyViaMail = notifyViaMail;
+	}
 }
