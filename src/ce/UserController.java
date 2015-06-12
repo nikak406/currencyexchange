@@ -43,5 +43,8 @@ public class UserController {
 		fc.addMessage(null, new FacesMessage("Successfully registered"));
 	}
 
-	// TODO public void update(CurrentUser currentUser)
+	public void update(CurrentUser currentUser){
+		FacesContext fc = fcb.getFC();
+		fc.addMessage(null, new FacesMessage("Successfully saved"));
+	}
 }
