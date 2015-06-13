@@ -1,10 +1,11 @@
 package ce;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class Transaction {
+public class Transaction implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +16,11 @@ public class Transaction {
 
 	private int amount;
 
-	//TODO private Order order;
+	@ManyToOne
+    private ExchangeOrder order;
 
-	//TODO private User customer;
+	@ManyToOne
+    private User customer;
 
 	public Transaction(){}
 

@@ -1,11 +1,12 @@
 package ce;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Currency;
 import java.util.Date;
 
 @Entity
-public class ExchangeOrder {
+public class ExchangeOrder implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,9 +15,8 @@ public class ExchangeOrder {
 	@Temporal(TemporalType.DATE)
 	private Date date;
 
-	//TODO @ManyToOne
-	//TODO @JoinColumn(name = "")
-	//TODO private User dealer;
+	@ManyToOne
+	private User dealer;
 
 	private Currency currency;
 

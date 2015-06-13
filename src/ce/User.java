@@ -3,9 +3,10 @@ package ce;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class User {
+public class User implements Serializable {
 
 	@NotNull
     @Id
