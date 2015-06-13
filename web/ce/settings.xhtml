@@ -26,15 +26,14 @@
                 <h:inputText value="#{currentUser.phoneNumber}" id="phoneNumber">
                 </h:inputText>
                 <h:message for="phoneNumber" style="color: red" />
-                <h:outputText value="Notify me via mail about my orders:" />
-                <h:selectBooleanCheckbox value="#{currentUser.notifyViaMail}" id="notifyViaMail">
-                </h:selectBooleanCheckbox>
-                <h:message for="notifyViaMail" style="color: red" />
-                <h:commandButton id="saveChangesButton"
-                                 action="home"
-                                 value="Save Changes"
-                                 actionListener="#{userController.update(currentUser)}"/>
+                <h:selectBooleanCheckbox value="#{currentUser.notifyViaMail}" id="notifyViaMail"/>
+                <h:outputText value="Notify me via email" />
             </h:panelGrid>
+            <h:commandButton id="saveChangesButton"
+                             action="home"
+                             value="Save Changes"
+                             actionListener="#{userController.update(currentUser)}"/>
+
         </ui:define>
     </ui:composition>
 </h:body>

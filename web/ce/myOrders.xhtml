@@ -8,8 +8,11 @@
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
-            <h:outputLabel value="Inside myOrders"/>
-
+            <h:outputLabel value="List of my orders here"/>
+            <br/>
+            <h:commandButton id="newOrderButton"
+                             action="newOrder"
+                             value="New Order"/>
         </ui:define>
     </ui:composition>
 </h:body>

@@ -40,11 +40,11 @@ public class Transaction implements Serializable {
 		this.amount = amount;
 	}
 
-	/*public Order getOrder() {
+	public ExchangeOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(ExchangeOrder order) {
 		this.order = order;
 	}
 
@@ -54,7 +54,7 @@ public class Transaction implements Serializable {
 
 	public void setCustomer(User customer) {
 		this.customer = customer;
-	} */
+	}
 
 	public Date getDate() {
 		return date;

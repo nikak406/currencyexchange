@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <ui:composition template="pattern.xhtml">
+        <ui:define name="content">
+            <h:panelGrid columns="3">
+                <h:outputText value="Currency:" />
+                <h:inputText value="#{newOrder.currency}" id="currency"/>
+                <h:message for="currency" style="color: red" />
+                <h:outputText value="Exchange Rate:" />
+                <h:inputText value="#{newOrder.rate}" id="rate"/>
+                <h:message for="rate" style="color: red" />
+                <h:outputText value="Amount:" />
+                <h:inputText value="#{newOrder.maxAmount}" id="maxAmount"/>
+                <h:message for="maxAmount" style="color: red" />
+                <h:outputText value="Order Type:" />
+                <h:inputText value="#{login.login}" id="exchangeOrderType"/>
+                <h:message for="exchangeOrderType" style="color: red" />
+                <h:commandButton id="placeOrderButton"
+                                 action="newOrder"
+                                 value="Place Order"
+                                 actionListener="#{exchangeOrderController.addOrder(newOrder)}"/>
+            </h:panelGrid>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

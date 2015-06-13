@@ -18,17 +18,21 @@ public class ExchangeOrder implements Serializable {
 	@ManyToOne
 	private User dealer;
 
-	private Currency currency;
+	//TODO change String to Currency
+    private String currency;
 
 	private ExchangeOrderType exchangeOrderType;
 
 	private int maxAmount;
 
-	private double course;
+	private double rate;
 
 	private boolean closed = false;
 
 	public ExchangeOrder(){}
+
+    public ExchangeOrder(Date date, User dealer, String currency, ExchangeOrderType exchangeOrderType,
+                         int maxAmount, double rate){}
 
 	public int getNumber() {
 		return number;
@@ -46,19 +50,19 @@ public class ExchangeOrder implements Serializable {
 		this.date = date;
 	}
 
-	/*public User getDealer() {
+	public User getDealer() {
 		return dealer;
 	}
 
 	public void setDealer(User dealer) {
-		this.dealer = dealer;
-	}*/
+        this.dealer = dealer;
+    }
 
-	public Currency getCurrency() {
+	public String getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(Currency currency) {
+	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
 
@@ -86,11 +90,11 @@ public class ExchangeOrder implements Serializable {
 		this.closed = closed;
 	}
 
-	public double getCourse() {
-		return course;
+	public double getRate() {
+		return rate;
 	}
 
-	public void setCourse(double course) {
-		this.course = course;
+	public void setRate(double rate) {
+		this.rate = rate;
 	}
 }
