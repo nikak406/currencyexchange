@@ -1,6 +1,7 @@
 package ce;
 
 import javax.ejb.Singleton;
+import javax.faces.bean.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -10,6 +11,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Singleton
+@ApplicationScoped
 public class TransactionDAO {
 
 	@PersistenceContext

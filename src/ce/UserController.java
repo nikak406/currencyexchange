@@ -2,6 +2,7 @@ package ce;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -9,8 +10,7 @@ import javax.faces.context.FacesContext;
 import java.util.List;
 
 @ManagedBean
-@Stateful
-@SessionScoped
+@Stateless
 public class UserController {
 
 	@EJB

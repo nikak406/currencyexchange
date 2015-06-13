@@ -2,14 +2,14 @@ package ce;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.util.Date;
 import java.util.List;
 
 @ManagedBean
-@Stateful
-@SessionScoped
+@Stateless
 public class ExchangeOrderController {
 
 	@EJB
