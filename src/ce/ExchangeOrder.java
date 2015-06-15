@@ -28,6 +28,9 @@ public class ExchangeOrder implements Serializable {
 
 	private boolean closed = false;
 
+	@Transient
+	private int amount;
+
 	public ExchangeOrder(){}
 
     public ExchangeOrder(Date date, User dealer, String currency, ExchangeOrderType exchangeOrderType,
@@ -103,5 +106,13 @@ public class ExchangeOrder implements Serializable {
 
 	public void setRate(double rate) {
 		this.rate = rate;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 }

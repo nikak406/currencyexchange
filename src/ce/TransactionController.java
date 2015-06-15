@@ -41,12 +41,12 @@ public class TransactionController {
 				.collect(Collectors.toList());
 	}
 
-	public void addTransaction(NewTransaction newTransaction, ExchangeOrder order){
+	public void addTransaction(ExchangeOrder order){
 		//TODO all transactions have 0 amount
 		int maxAmount = order.getMaxAmount();
-		int amount = newTransaction.getAmount();
+		int amount = order.getAmount();
 		if (maxAmount < amount){
-			newTransaction.setAmount(maxAmount);
+			order.setAmount(maxAmount);
 			amount = maxAmount;
 		}
 		order.setMaxAmount(maxAmount - amount);
