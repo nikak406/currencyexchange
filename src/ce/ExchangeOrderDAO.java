@@ -23,7 +23,7 @@ public class ExchangeOrderDAO {
 	}
 
 	public void updateOrder(ExchangeOrder exchangeOrder){
-		em.refresh(exchangeOrder);
+		em.merge(exchangeOrder);
 	}
 
 	public List<ExchangeOrder> getOrders(){

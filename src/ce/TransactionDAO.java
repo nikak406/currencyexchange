@@ -22,7 +22,7 @@ public class TransactionDAO {
 	}
 
 	public void updateTransaction(Transaction transaction){
-		em.refresh(transaction);
+		em.merge(transaction);
 	}
 
 	public List<Transaction> getTransactions(){

@@ -22,7 +22,7 @@ public class UserDAO {
     }
 
     public void updateUser(User user){
-        em.refresh(user);
+        em.merge(user);
     }
 
 	public List<User> getUsers(){

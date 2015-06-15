@@ -42,6 +42,7 @@ public class TransactionController {
 	}
 
 	public void addTransaction(NewTransaction newTransaction, ExchangeOrder order){
+		//TODO all transactions have 0 amount
 		if (order.getMaxAmount() < newTransaction.getAmount()){
 			newTransaction.setAmount(order.getMaxAmount());
 		}
