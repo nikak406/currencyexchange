@@ -43,13 +43,16 @@ public class TransactionController {
 
 	public void addTransaction(NewTransaction newTransaction, ExchangeOrder order){
 		//TODO all transactions have 0 amount
-		if (order.getMaxAmount() < newTransaction.getAmount()){
-			newTransaction.setAmount(order.getMaxAmount());
+		int maxAmount = order.getMaxAmount();
+		int amount = newTransaction.getAmount();
+		if (maxAmount < amount){
+			newTransaction.setAmount(maxAmount);
+			amount = maxAmount;
 		}
-		order.setMaxAmount(order.getMaxAmount() - newTransaction.getAmount());
+		order.setMaxAmount(maxAmount - amount);
 		exchangeOrderController.updateOrder(order);
 		Transaction transaction = new Transaction();
-		transaction.setAmount(newTransaction.getAmount());
+		transaction.setAmount(amount);
 		User customer = loggedInUser.getUser();
 		transaction.setCustomer(customer);
 		Date now = new Date();
