@@ -8,8 +8,34 @@
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
-            <h:outputLabel value="Inside Transactions"/>
-
+            <h:form>
+                <h:dataTable value="#{transactionController.myTransactions}" var="transaction">
+                    <h:column>
+                        <f:facet name="header">Currency</f:facet>
+                        #{transaction.order.currency}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        #{transaction.amount}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Type</f:facet>
+                        #{transaction.order.exchangeOrderType}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Dealer</f:facet>
+                        #{transaction.order.dealer.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Customer</f:facet>
+                        #{transaction.customer.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        #{transaction.date}
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

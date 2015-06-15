@@ -1,15 +1,56 @@
 package ce;
 
-import javax.ejb.Stateful;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
+//TODO add sorting
 @ManagedBean
 @Stateless
 public class TransactionController {
 
-	//TODO public List<Transaction> getTransactions(User user)
+	@EJB
+	LoginController loginController;
 
-	//TODO public void addTransaction(UserTransaction userTransaction)
+	@EJB
+	UserController userController;
+
+	@EJB
+	TransactionDAO transactionDAO;
+
+	@EJB
+	ExchangeOrderController exchangeOrderController;
+
+	private List<Transaction> getTransactions(){
+		return transactionDAO.getTransactions();
+	}
+
+	public List<Transaction> getMyTransactions(){
+		List<Transaction> allTransactions = transactionDAO.getTransactions();
+		String login = loginController.getCurrentUser();
+		User currentUser = userController.getUser(login);
+		return allTransactions.stream()
+				.filter(transaction -> transaction.getCustomer() == currentUser
+						|| transaction.getOrder().getDealer() == currentUser).collect(Collectors.toList());
+	}
+
+	public void addTransaction(NewTransaction newTransaction, ExchangeOrder order){
+		if (order.getMaxAmount() < newTransaction.getAmount()){
+			newTransaction.setAmount(order.getMaxAmount());
+		}
+		exchangeOrderController.updateOrder(order);
+		order.setMaxAmount(order.getMaxAmount() - newTransaction.getAmount());
+		Transaction transaction = new Transaction();
+		transaction.setAmount(newTransaction.getAmount());
+		String login = loginController.getCurrentUser();
+		User customer = userController.getUser(login);
+		transaction.setCustomer(customer);
+		Date now = new Date();
+		transaction.setDate(now);
+		transaction.setOrder(order);
+		transactionDAO.registerTransaction(transaction);
+	}
 }

@@ -30,6 +30,25 @@
                         <f:facet name="header">Date</f:facet>
                         #{order.date}
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                        #{order.dealer.phoneNumber}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Location</f:facet>
+                        #{order.dealer.location}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        #{newTransaction.amount}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Add Transaction</f:facet>
+                        <h:commandButton id="addTransactionButton"
+                                         action="transactions"
+                                         value="+"
+                                         actionListener="#{transactionController.addTransaction(newTransaction, order)}"/>
+                    </h:column>
                 </h:dataTable>
             </h:form>
         </ui:define>

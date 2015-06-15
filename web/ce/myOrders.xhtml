@@ -8,11 +8,49 @@
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
-            <h:outputLabel value="List of my orders here"/>
-            <br/>
-            <h:commandButton id="newOrderButton"
-                             action="newOrder"
-                             value="New Order"/>
+            <h:form>
+                <h:dataTable value="#{exchangeOrderController.myOrders}" var="order">
+                    <h:column>
+                        <f:facet name="header">Currency</f:facet>
+                        #{order.currency}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        #{order.maxAmount}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Type</f:facet>
+                        #{order.exchangeOrderType}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        #{order.dealer.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        #{order.date}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                        #{order.dealer.phoneNumber}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Location</f:facet>
+                        #{order.dealer.location}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Amount</f:facet>
+                        #{newTransaction.amount}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Add Transaction</f:facet>
+                        <h:commandButton id="addTransactionButton"
+                                         action="transactions"
+                                         value="+"
+                                         actionListener="#{transactionController.addTransaction(newTransaction, order)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

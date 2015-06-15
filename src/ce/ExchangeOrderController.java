@@ -1,13 +1,13 @@
 package ce;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+//TODO add sorting
 @ManagedBean
 @Stateless
 public class ExchangeOrderController {
@@ -34,5 +34,15 @@ public class ExchangeOrderController {
     public List<ExchangeOrder> getOrders(){
         return exchangeOrderDAO.getOrders();
     }
-	//TODO public List<ExchangeOrder> getOrders(User user)
+
+	public List<ExchangeOrder> getMyOrders(){
+		String login = loginController.getCurrentUser();
+		User currentUser = userController.getUser(login);
+		List<ExchangeOrder> allOrders = getOrders();
+		return allOrders.stream().filter(order -> order.getDealer() == currentUser).collect(Collectors.toList());
+	}
+
+	public void updateOrder(ExchangeOrder order){
+		exchangeOrderDAO.updateOrder(order);
+	}
 }
