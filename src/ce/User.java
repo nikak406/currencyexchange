@@ -111,4 +111,8 @@ public class User implements Serializable {
 	public void setNotifyViaMail(boolean notifyViaMail) {
 		this.notifyViaMail = notifyViaMail;
 	}
+
+	public boolean getNotifyViaMail() {
+		return notifyViaMail;
+	}
 }

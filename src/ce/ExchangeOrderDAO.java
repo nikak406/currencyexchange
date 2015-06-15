@@ -33,12 +33,4 @@ public class ExchangeOrderDAO {
 		TypedQuery<ExchangeOrder> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
-
-	public List<ExchangeOrder> getOrders(User user){
-		List<ExchangeOrder> allExchangeOrders = getOrders();
-		//TODO
-		return allExchangeOrders;
-	}
-
-	//TODO public Order getOrder(int number)
 }
