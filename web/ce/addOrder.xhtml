@@ -8,27 +8,29 @@
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
-            <h:panelGrid columns="3">
-                <h:outputText value="Currency:" />
-                <h:inputText value="#{newOrder.currency}" id="currency"/>
-                <h:message for="currency" style="color: red" />
-                <h:outputText value="Exchange Rate:" />
-                <h:inputText value="#{newOrder.rate}" id="rate"/>
-                <h:message for="rate" style="color: red" />
-                <h:outputText value="Amount:" />
-                <h:inputText value="#{newOrder.maxAmount}" id="maxAmount"/>
-                <h:message for="maxAmount" style="color: red" />
-                <h:outputText value="Order Type:" />
-                <h:selectOneMenu id="exchangeOrderType" value="#{newOrder.exchangeOrderType}">
-                    <f:selectItems value="#{orderTypeBean.values}" var="orderType"
-                                   itemValue="#{orderType}" itemLabel="#{orderType.label}"/>
-                </h:selectOneMenu>
-                <h:message for="exchangeOrderType" style="color: red" />
-                <h:commandButton id="placeOrderButton"
-                                 action="myOrders"
-                                 value="Place Order"
-                                 actionListener="#{exchangeOrderController.addOrder(newOrder)}"/>
-            </h:panelGrid>
+            <h:form>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Currency:" />
+                    <h:inputText value="#{newOrder.currency}" id="currency"/>
+                    <h:message for="currency" style="color: red" />
+                    <h:outputText value="Exchange Rate:" />
+                    <h:inputText value="#{newOrder.rate}" id="rate"/>
+                    <h:message for="rate" style="color: red" />
+                    <h:outputText value="Amount:" />
+                    <h:inputText value="#{newOrder.maxAmount}" id="maxAmount"/>
+                    <h:message for="maxAmount" style="color: red" />
+                    <h:outputText value="Order Type:" />
+                    <h:selectOneMenu id="exchangeOrderType" value="#{newOrder.exchangeOrderType}">
+                        <f:selectItems value="#{orderTypeBean.values}" var="orderType"
+                                       itemValue="#{orderType}" itemLabel="#{orderType.label}"/>
+                    </h:selectOneMenu>
+                    <h:message for="exchangeOrderType" style="color: red" />
+                    <h:commandButton id="placeOrderButton"
+                                     action="myOrders"
+                                     value="Place Order"
+                                     actionListener="#{exchangeOrderController.addOrder(newOrder)}"/>
+                </h:panelGrid>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>

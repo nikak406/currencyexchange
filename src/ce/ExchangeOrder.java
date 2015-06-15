@@ -31,7 +31,15 @@ public class ExchangeOrder implements Serializable {
 	public ExchangeOrder(){}
 
     public ExchangeOrder(Date date, User dealer, String currency, ExchangeOrderType exchangeOrderType,
-                         int maxAmount, double rate){}
+                         int maxAmount, double rate){
+		this.setDate(date);
+		this.setDealer(dealer);
+		this.setCurrency(currency);
+		this.setMaxAmount(maxAmount);
+		this.setExchangeOrderType(exchangeOrderType);
+		this.setRate(rate);
+		this.setClosed(false);
+	}
 
 	public int getNumber() {
 		return number;

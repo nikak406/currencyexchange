@@ -25,7 +25,7 @@ public class ExchangeOrderController {
         Date now = new Date();
         User currentUser = loggedInUser.getUser();
         ExchangeOrder order = new ExchangeOrder(now, currentUser, newOrder.getCurrency(),
-                ExchangeOrderType.BUY, newOrder.getMaxAmount(), newOrder.getRate());
+                newOrder.getExchangeOrderType(), newOrder.getMaxAmount(), newOrder.getRate());
         exchangeOrderDAO.registerOrder(order);
     }
 
