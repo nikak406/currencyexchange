@@ -10,26 +10,25 @@
         <ui:define name="content">
             <h:panelGrid columns="3">
                 <h:outputText value="Currency:" />
-                <h:inputText value="#{newOrder.currency}" id="currency">
-                </h:inputText>
+                <h:inputText value="#{newOrder.currency}" id="currency"/>
                 <h:message for="currency" style="color: red" />
-                <h:outputText value="Rate:" />
+                <h:outputText value="Exchange Rate:" />
                 <h:inputText value="#{newOrder.rate}" id="rate"/>
                 <h:message for="rate" style="color: red" />
-                <h:outputText value="Type" />
-                <h:inputText value="#{newOrder.exchangeOrderType}" id="exchangeOrderType">
-                </h:inputText>
-                <h:message for="exchangeOrderType" style="color: red" />
-                <h:outputText value="Max. Amount" />
-                <h:inputText value="#{newOrder.maxAmount}" id="maxAmount">
-                </h:inputText>
+                <h:outputText value="Amount:" />
+                <h:inputText value="#{newOrder.maxAmount}" id="maxAmount"/>
                 <h:message for="maxAmount" style="color: red" />
+                <h:outputText value="Order Type:" />
+                <h:selectOneMenu id="exchangeOrderType" value="#{newOrder.exchangeOrderType}">
+                    <f:selectItems value="#{orderTypeBean.values}" var="orderType"
+                                   itemValue="#{orderType}" itemLabel="#{orderType.label}"/>
+                </h:selectOneMenu>
+                <h:message for="exchangeOrderType" style="color: red" />
+                <h:commandButton id="placeOrderButton"
+                                 action="myOrders"
+                                 value="Place Order"
+                                 actionListener="#{exchangeOrderController.addOrder(newOrder)}"/>
             </h:panelGrid>
-            <h:commandButton id="addOrderButton"
-                             action="myOrders"
-                             value="Add Order"
-                             actionListener="#{exchangeOrderController.addOrder(newOrder)}"/>
-
         </ui:define>
     </ui:composition>
 </h:body>

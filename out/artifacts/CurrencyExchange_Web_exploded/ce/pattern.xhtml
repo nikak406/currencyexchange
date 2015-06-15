@@ -13,7 +13,7 @@
     <div id="loggedIn">
         <ui:insert name="loggedIn">
                 <h:form>
-                <h:outputText value="#{loginController.currentUser} (" />
+                <h:outputText value="#{loginController.currentLogin} (" />
                 <h:commandLink value="logout" action="#" actionListener="#{loginController.logout()}"/>
                 <h:outputText value=")"/>
                 <hr/>
