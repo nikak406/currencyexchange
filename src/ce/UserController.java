@@ -17,6 +17,9 @@ public class UserController {
 	@EJB
 	FacesContextBean fcb;
 
+	@EJB
+	LoggedInUser loggedInUser;
+
 	public List<User> getUsers(){
 		return userDAO.getUsers();
 	}
@@ -41,8 +44,23 @@ public class UserController {
 		fc.addMessage(null, new FacesMessage("Successfully registered"));
 	}
 
+	//TODO add prefilled fields
 	public void update(CurrentUser currentUser){
-		//TODO add code
+		User loggedInUser = this.loggedInUser.getUser();
+		if (currentUser.getLocation() != null) {
+			loggedInUser.setLocation(currentUser.getLocation());
+		}
+		if (currentUser.getRoom() != null) {
+			loggedInUser.setRoom(currentUser.getRoom());
+		}
+		if (currentUser.getEmail() != null) {
+			loggedInUser.setEmail(currentUser.getEmail());
+		}
+		if (currentUser.getPhoneNumber() != null) {
+			loggedInUser.setPhoneNumber(currentUser.getPhoneNumber());
+		}
+		loggedInUser.setNotifyViaMail(currentUser.getNotifyViaMail());
+		userDAO.updateUser(loggedInUser);
 		FacesContext fc = fcb.getFC();
 		fc.addMessage(null, new FacesMessage("Successfully saved"));
 	}

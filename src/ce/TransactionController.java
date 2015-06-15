@@ -45,12 +45,11 @@ public class TransactionController {
 		if (order.getMaxAmount() < newTransaction.getAmount()){
 			newTransaction.setAmount(order.getMaxAmount());
 		}
-		exchangeOrderController.updateOrder(order);
 		order.setMaxAmount(order.getMaxAmount() - newTransaction.getAmount());
+		exchangeOrderController.updateOrder(order);
 		Transaction transaction = new Transaction();
 		transaction.setAmount(newTransaction.getAmount());
-		String login = loginController.getCurrentLogin();
-		User customer = userController.getUser(login);
+		User customer = loggedInUser.getUser();
 		transaction.setCustomer(customer);
 		Date now = new Date();
 		transaction.setDate(now);
