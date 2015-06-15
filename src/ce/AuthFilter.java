@@ -19,7 +19,7 @@ public class AuthFilter implements Filter {
     	HttpSession session = request.getSession();
 		if (session != null){
 			LoginController lc = (LoginController) session.getAttribute("loginController");
-			if (lc == null || lc.getCurrentUser() == null) response.sendRedirect("/login.xhtml");
+			if (lc == null || lc.getCurrentLogin() == null) response.sendRedirect("/login.xhtml");
 		} else {
 			response.sendRedirect("/login.xhtml");
 		}

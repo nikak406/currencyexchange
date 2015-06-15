@@ -24,17 +24,21 @@ public class TransactionController {
 	@EJB
 	ExchangeOrderController exchangeOrderController;
 
+	@EJB
+	LoggedInUser loggedInUser;
+
 	private List<Transaction> getTransactions(){
 		return transactionDAO.getTransactions();
 	}
 
 	public List<Transaction> getMyTransactions(){
 		List<Transaction> allTransactions = transactionDAO.getTransactions();
-		String login = loginController.getCurrentUser();
-		User currentUser = userController.getUser(login);
-		return allTransactions.stream()
-				.filter(transaction -> transaction.getCustomer() == currentUser
-						|| transaction.getOrder().getDealer() == currentUser).collect(Collectors.toList());
+		User currentUser = loggedInUser.getUser();
+		return allTransactions
+				.stream()
+				.filter(transaction -> transaction.getCustomer().equals(currentUser)
+						|| transaction.getOrder().getDealer().equals(currentUser))
+				.collect(Collectors.toList());
 	}
 
 	public void addTransaction(NewTransaction newTransaction, ExchangeOrder order){
@@ -45,7 +49,7 @@ public class TransactionController {
 		order.setMaxAmount(order.getMaxAmount() - newTransaction.getAmount());
 		Transaction transaction = new Transaction();
 		transaction.setAmount(newTransaction.getAmount());
-		String login = loginController.getCurrentUser();
+		String login = loginController.getCurrentLogin();
 		User customer = userController.getUser(login);
 		transaction.setCustomer(customer);
 		Date now = new Date();

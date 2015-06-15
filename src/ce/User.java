@@ -115,4 +115,15 @@ public class User implements Serializable {
 	public boolean getNotifyViaMail() {
 		return notifyViaMail;
 	}
+
+	public boolean equals(User user){
+		return (this.getLogin().equals(user.getLogin())
+			&& this.getPassword().equals(user.getPassword())
+			&& this.getName().equals(user.getName())
+			&& this.getEmail().equals(user.getEmail())
+			&& this.getLocation().equals(user.getLocation())
+			&& this.getPhoneNumber().equals(user.getPhoneNumber())
+			&& this.getRoom().equals(user.getRoom())
+			&& this.getNotifyViaMail() == user.getNotifyViaMail());
+	}
 }

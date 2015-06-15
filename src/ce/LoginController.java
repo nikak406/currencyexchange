@@ -1,7 +1,7 @@
 package ce;
 
 import javax.ejb.EJB;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 @ManagedBean
-@Stateful
+@Stateless
 @SessionScoped
 public class LoginController implements Serializable{
 
@@ -24,11 +24,12 @@ public class LoginController implements Serializable{
 	@EJB
 	FacesContextBean fcb;
 
+	@EJB
+	LoggedInUser loggedInUser;
+
 	private UIComponent loginField;
 
 	private UIComponent passwordField;
-
-    private String currentUser = null;
 
     public boolean isLoginCorrect(Login login){
         User user = userController.getUser(login.getLogin());
@@ -44,7 +45,7 @@ public class LoginController implements Serializable{
 
 	public void logout() { //TODO: get rid of ignored exception
         FacesContext fc = fcb.getFC();
-        currentUser = null;
+		loggedInUser.setUser(null);
         try {
 			cookiesController.dropCookies();
             fc.getExternalContext().redirect("/login.xhtml");
@@ -54,7 +55,9 @@ public class LoginController implements Serializable{
 	public void login(Login login){ //TODO: get rid of ignored exception
         FacesContext fc = fcb.getFC();
         if (isLoginCorrect(login)){
-            currentUser = login.getLogin();
+            String currentLogin = login.getLogin();
+			User currentUser = userController.getUser(currentLogin);
+			loggedInUser.setUser(currentUser);
             if(login.isRemember()){
 				cookiesController.addCookies(login.getLogin(), login.getPassword());
             }
@@ -64,12 +67,8 @@ public class LoginController implements Serializable{
         }
     }
 
-	public String getCurrentUser() {
-        return currentUser;
-    }
-
-	public void setCurrentUser(String currentUser) {
-        this.currentUser = currentUser;
+	public String getCurrentLogin() {
+        return loggedInUser.getLogin();
     }
 
 	public UIComponent getLoginField() {

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ExchangeOrderController {
 
 	@EJB
-    LoginController loginController;
+    LoggedInUser loggedInUser;
 
     @EJB
     UserController userController;
@@ -23,9 +23,7 @@ public class ExchangeOrderController {
 
     public void addOrder(NewOrder newOrder) {
         Date now = new Date();
-        String currentLogin = loginController.getCurrentUser();
-        User currentUser = userController.getUser(currentLogin);
-
+        User currentUser = loggedInUser.getUser();
         ExchangeOrder order = new ExchangeOrder(now, currentUser, newOrder.getCurrency(),
                 ExchangeOrderType.BUY, newOrder.getMaxAmount(), newOrder.getRate());
         exchangeOrderDAO.registerOrder(order);
@@ -36,10 +34,12 @@ public class ExchangeOrderController {
     }
 
 	public List<ExchangeOrder> getMyOrders(){
-		String login = loginController.getCurrentUser();
-		User currentUser = userController.getUser(login);
+		User currentUser = loggedInUser.getUser();
 		List<ExchangeOrder> allOrders = getOrders();
-		return allOrders.stream().filter(order -> order.getDealer() == currentUser).collect(Collectors.toList());
+		return allOrders
+				.stream()
+				.filter(order -> order.getDealer().equals(currentUser))
+				.collect(Collectors.toList());
 	}
 
 	public void updateOrder(ExchangeOrder order){

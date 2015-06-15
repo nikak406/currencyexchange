@@ -1,9 +1,9 @@
 package ce;
 
-import javax.ejb.Stateful;
+import javax.ejb.Singleton;
 import javax.faces.bean.SessionScoped;
 
-@Stateful
+@Singleton
 @SessionScoped
 public class LoggedInUser {
 
@@ -21,4 +21,8 @@ public class LoggedInUser {
         if (user == null ) return null;
         return user.getLogin();
     }
+
+	public void setUser(User user){
+		this.user = user;
+	}
 }
