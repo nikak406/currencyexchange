@@ -46,11 +46,11 @@
             <h:form>
                 <h:panelGrid columns="4">
                     <h:outputText value="Amount:" />
-                    <h:inputText value="#{newTransaction.amount}" id="currency"/>
-                    <h:message for="currency" style="color: red" />
-                    <h:commandButton id="placeOrderButton"
+                    <h:inputText value="#{newTransaction.amount}" id="amount"/>
+                    <h:message for="amount" style="color: red" />
+                    <h:commandButton id="commitTransactionButton"
                                      action="transactions"
-                                     value="Place Order"
+                                     value="Commit Transaction"
                                      actionListener="#{transactionController.addTransaction(newTransaction)}"/>
                 </h:panelGrid>
             </h:form>

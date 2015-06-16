@@ -1,9 +1,12 @@
 package ce;
 
-import javax.ejb.Stateful;
+import javax.ejb.Singleton;
+import javax.faces.bean.SessionScoped;
 
-@Stateful
-//@FlowScoped()
+@Singleton
+@SessionScoped
+//TODO @FlowScoped()
+//@Stateful
 public class CurrentTransaction {
 
 	private ExchangeOrder order;

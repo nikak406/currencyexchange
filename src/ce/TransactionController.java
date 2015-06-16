@@ -36,7 +36,7 @@ public class TransactionController {
 	}
 
 	public List<Transaction> getMyTransactions(){
-		List<Transaction> allTransactions = transactionDAO.getTransactions();
+		List<Transaction> allTransactions = getTransactions();
 		User currentUser = loggedInUser.getUser();
 		return allTransactions
 				.stream()
