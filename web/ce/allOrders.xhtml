@@ -43,15 +43,11 @@
                         #{order.dealer.location}
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Amount</f:facet>
-                        <h:inputText value="#{newTransaction.amount}"/>
-                    </h:column>
-                    <h:column>
                         <f:facet name="header">Add Transaction</f:facet>
                         <h:commandButton id="addTransactionButton"
-                                         action="transactions"
+                                         action="addTransaction"
                                          value="+"
-                                         actionListener="#{transactionController.addTransaction(newTransaction, order)}"/>
+                                         actionListener="#{transactionController.addTransactionOrder(order)}"/>
                     </h:column>
                 </h:dataTable>
             </h:form>
