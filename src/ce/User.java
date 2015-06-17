@@ -38,7 +38,7 @@ public class User implements Serializable {
 		this.phoneNumber = phone;
     }
 
-	public boolean isPasswordCorrect(String password){ //TODO: handle exception correctly
+	public boolean isPasswordCorrect(String password){
         if (this.password.equals(password)) return true;
         else{
             try {

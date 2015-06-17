@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+//TODO refactor names
+//TODO refactor packets
 @Entity
 public class ExchangeOrder implements Serializable {
 
@@ -11,6 +13,7 @@ public class ExchangeOrder implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
 
+	//TODO switch to Java8 date
 	@Temporal(TemporalType.DATE)
 	private Date date;
 

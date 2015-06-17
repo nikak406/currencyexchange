@@ -35,7 +35,7 @@ public class UserController {
 		return (getUser(login) != null);
 	}
 
-	public void register(Register register){ //TODO add check of existing login
+	public void register(Register register){
 		if (containsUser(register.getLogin())) return;
 		User user = new User(register.getLogin(), register.getPassword(), register.getName(),
 				register.getEmail(), register.getLocation(), register.getRoom(), register.getPhoneNumber());

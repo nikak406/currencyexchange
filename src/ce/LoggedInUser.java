@@ -3,6 +3,7 @@ package ce;
 import javax.ejb.Singleton;
 import javax.faces.bean.SessionScoped;
 
+//TODO functional is doing wrong
 @Singleton
 @SessionScoped
 public class LoggedInUser {

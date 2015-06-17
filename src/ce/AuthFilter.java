@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//TODO: doesn't work correctly after setting /* url pattern (NPE)
 @WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
 public class AuthFilter implements Filter {
 
