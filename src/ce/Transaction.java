@@ -2,6 +2,7 @@ package ce;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -11,8 +12,8 @@ public class Transaction implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
 
-	@Temporal(TemporalType.DATE)
-	private Date date;
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime date;
 
 	private int amount;
 
@@ -56,11 +57,11 @@ public class Transaction implements Serializable {
 		this.customer = customer;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 }

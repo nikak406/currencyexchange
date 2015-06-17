@@ -3,6 +3,7 @@ package ce;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -63,7 +64,7 @@ public class TransactionController {
 		transaction.setAmount(amount);
 		User customer = loggedInUser.getUser();
 		transaction.setCustomer(customer);
-		Date now = new Date();
+		LocalDateTime now = LocalDateTime.now();
 		transaction.setDate(now);
 		transaction.setOrder(order);
 		transactionDAO.registerTransaction(transaction);

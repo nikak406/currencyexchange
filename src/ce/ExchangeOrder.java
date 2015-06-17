@@ -2,6 +2,7 @@ package ce;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 //TODO refactor names
@@ -14,8 +15,8 @@ public class ExchangeOrder implements Serializable {
 	private int number;
 
 	//TODO switch to Java8 date
-	@Temporal(TemporalType.DATE)
-	private Date date;
+	@Temporal(TemporalType.TIMESTAMP)
+	private LocalDateTime date;
 
 	@ManyToOne
 	private User dealer;
@@ -33,7 +34,7 @@ public class ExchangeOrder implements Serializable {
 
 	public ExchangeOrder(){}
 
-    public ExchangeOrder(Date date, User dealer, String currency, ExchangeOrderType exchangeOrderType,
+    public ExchangeOrder(LocalDateTime date, User dealer, String currency, ExchangeOrderType exchangeOrderType,
                          int maxAmount, double rate){
 		this.setDate(date);
 		this.setDealer(dealer);
@@ -52,11 +53,11 @@ public class ExchangeOrder implements Serializable {
 		this.number = number;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
 	}
 

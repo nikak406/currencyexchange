@@ -3,6 +3,7 @@ package ce;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.bean.ManagedBean;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class ExchangeOrderController {
     ExchangeOrderDAO exchangeOrderDAO;
 
     public void addOrder(NewOrder newOrder) {
-        Date now = new Date();
+        LocalDateTime now = LocalDateTime.now();
         User currentUser = loggedInUser.getUser();
         ExchangeOrder order = new ExchangeOrder(now, currentUser, newOrder.getCurrency(),
                 newOrder.getExchangeOrderType(), newOrder.getMaxAmount(), newOrder.getRate());
