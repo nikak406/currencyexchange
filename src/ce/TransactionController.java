@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO add sorting
 @ManagedBean
 @Stateless
 public class TransactionController {
@@ -32,7 +31,11 @@ public class TransactionController {
 	CurrentTransaction currentTransaction;
 
 	private List<Transaction> getTransactions(){
-		return transactionDAO.getTransactions();
+		return transactionDAO
+				.getTransactions()
+				.stream()
+				.sorted((transaction1, transaction2) -> transaction1.getDate().compareTo(transaction2.getDate()))
+				.collect(Collectors.toList());
 	}
 
 	public List<Transaction> getMyTransactions(){
@@ -46,7 +49,6 @@ public class TransactionController {
 	}
 
 	public void addTransaction(NewTransaction newTransaction){
-		//TODO all transactions have 0 amount
 		ExchangeOrder order = currentTransaction.getOrder();
 		if (order == null) return;
 		int maxAmount = order.getMaxAmount();
@@ -68,7 +70,6 @@ public class TransactionController {
 	}
 
 	public void addTransactionOrder(ExchangeOrder order){
-		//TODO all transactions have 0 amount
 		currentTransaction.setOrder(order);
 	}
 

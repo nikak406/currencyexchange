@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//TODO add sorting
 @ManagedBean
 @Stateless
 public class ExchangeOrderController {
@@ -30,7 +29,11 @@ public class ExchangeOrderController {
     }
 
     public List<ExchangeOrder> getOrders(){
-        return exchangeOrderDAO.getOrders();
+        return exchangeOrderDAO
+				.getOrders()
+				.stream()
+				.sorted((order1, order2) -> order1.getDate().compareTo(order2.getDate()))
+				.collect(Collectors.toList());
     }
 
 	public List<ExchangeOrder> getMyOrders(){
