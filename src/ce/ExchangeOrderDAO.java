@@ -12,7 +12,6 @@ import java.util.List;
 
 @Singleton
 @ApplicationScoped
-//TODO refresh (update) is not working
 public class ExchangeOrderDAO {
 
 	@PersistenceContext

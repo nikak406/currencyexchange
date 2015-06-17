@@ -4,7 +4,6 @@ import javax.ejb.Stateless;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-//TODO: correct exception handling
 @Stateless
 public class PasswordHash {
 	public String create(String password){
@@ -12,7 +11,7 @@ public class PasswordHash {
 		try {
 			md = MessageDigest.getInstance("MD5");
 		} catch (NoSuchAlgorithmException ignored) {
-			return null;
+			return password;
 		}
 		md.update(password.getBytes());
 		byte byteData[] = md.digest();
