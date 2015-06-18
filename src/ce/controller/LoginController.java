@@ -1,6 +1,8 @@
 package ce.controller;
 
+import ce.controller.auth.CookiesHandler;
 import ce.model.LoggedInUser;
+import ce.view.FacesContextValue;
 import ce.view.Login;
 import ce.model.User;
 

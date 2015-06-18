@@ -1,6 +1,6 @@
 package ce.controller;
 
-import ce.model.OrderDAO;
+import ce.model.DAO.OrderDAO;
 import ce.model.LoggedInUser;
 import ce.view.NewOrder;
 import ce.model.Order;

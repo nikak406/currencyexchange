@@ -1,4 +1,6 @@
-package ce.model;
+package ce.model.DAO;
+
+import ce.model.Order;
 
 import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;

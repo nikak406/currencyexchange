@@ -2,9 +2,10 @@ package ce.controller;
 
 import ce.model.LoggedInUser;
 import ce.model.User;
-import ce.model.UserDAO;
+import ce.model.DAO.UserDAO;
 import ce.view.CurrentUser;
-import ce.view.Register;
+import ce.view.FacesContextValue;
+import ce.view.NewUser;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -40,10 +41,10 @@ public class UserController {
 		return (getUser(login) != null);
 	}
 
-	public void register(Register register){
-		if (containsUser(register.getLogin())) return;
-		User user = new User(register.getLogin(), register.getPassword(), register.getName(),
-				register.getEmail(), register.getLocation(), register.getRoom(), register.getPhoneNumber());
+	public void register(NewUser newUser){
+		if (containsUser(newUser.getLogin())) return;
+		User user = new User(newUser.getLogin(), newUser.getPassword(), newUser.getName(),
+				newUser.getEmail(), newUser.getLocation(), newUser.getRoom(), newUser.getPhoneNumber());
 		userDAO.registerUser(user);
 		javax.faces.context.FacesContext fc = fcb.getInstance();
 		fc.addMessage(null, new FacesMessage("Successfully registered"));

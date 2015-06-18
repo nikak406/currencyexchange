@@ -3,7 +3,7 @@ package ce.controller;
 import ce.model.CurrentTransaction;
 import ce.model.LoggedInUser;
 import ce.view.NewTransaction;
-import ce.model.TransactionDAO;
+import ce.model.DAO.TransactionDAO;
 import ce.model.Order;
 import ce.model.Transaction;
 import ce.model.User;

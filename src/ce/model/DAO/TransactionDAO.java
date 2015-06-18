@@ -1,4 +1,4 @@
-package ce.model;
+package ce.model.DAO;
 
 import ce.model.Transaction;
 import ce.model.User;

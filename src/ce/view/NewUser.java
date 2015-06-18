@@ -10,9 +10,9 @@ import javax.faces.bean.ManagedBean;
 //TODO override messages regex not matched in xhtml
 //TODO add select instead of inputText for location
 //TODO add regex pattern for phone
-public class Register extends User {
+public class NewUser extends User {
 
-    public Register() {}
+    public NewUser() {}
 
     @EJB
     private PasswordHash passwordHash;
