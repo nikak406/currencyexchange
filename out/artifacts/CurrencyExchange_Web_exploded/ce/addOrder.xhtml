@@ -20,15 +20,15 @@
                     <h:inputText value="#{newOrder.maxAmount}" id="maxAmount"/>
                     <h:message for="maxAmount" style="color: red" />
                     <h:outputText value="Order Type:" />
-                    <h:selectOneMenu id="exchangeOrderType" value="#{newOrder.exchangeOrderType}">
-                        <f:selectItems value="#{orderTypeBean.values}" var="orderType"
+                    <h:selectOneMenu id="exchangeOrderType" value="#{newOrder.orderType}">
+                        <f:selectItems value="#{orderTypeValues.values}" var="orderType"
                                        itemValue="#{orderType}" itemLabel="#{orderType.label}"/>
                     </h:selectOneMenu>
                     <h:message for="exchangeOrderType" style="color: red" />
                     <h:commandButton id="placeOrderButton"
                                      action="myOrders"
                                      value="Place Order"
-                                     actionListener="#{exchangeOrderController.addOrder(newOrder)}"/>
+                                     actionListener="#{orderController.addOrder(newOrder)}"/>
                 </h:panelGrid>
             </h:form>
         </ui:define>
