@@ -11,6 +11,7 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
 
+	//TODO modify output format
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
