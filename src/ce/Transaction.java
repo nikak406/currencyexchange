@@ -11,7 +11,7 @@ public class Transaction implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	private int amount;

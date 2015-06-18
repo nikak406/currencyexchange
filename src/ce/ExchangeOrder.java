@@ -13,8 +13,7 @@ public class ExchangeOrder implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
 
-	//TODO switch to Java8 date
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
 	@ManyToOne
