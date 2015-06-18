@@ -1,4 +1,10 @@
-package ce;
+package ce.controller;
+
+import ce.model.ExchangeOrderDAO;
+import ce.model.LoggedInUser;
+import ce.view.NewOrder;
+import ce.model.ExchangeOrder;
+import ce.model.User;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -12,13 +18,13 @@ import java.util.stream.Collectors;
 public class ExchangeOrderController {
 
 	@EJB
-    LoggedInUser loggedInUser;
+	LoggedInUser loggedInUser;
 
     @EJB
     UserController userController;
 
     @EJB
-    ExchangeOrderDAO exchangeOrderDAO;
+	ExchangeOrderDAO exchangeOrderDAO;
 
     public void addOrder(NewOrder newOrder) {
         Date now = new Date();

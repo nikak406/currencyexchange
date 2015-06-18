@@ -1,4 +1,4 @@
-package ce;
+package ce.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

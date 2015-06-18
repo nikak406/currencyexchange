@@ -1,4 +1,6 @@
-package ce;
+package ce.model;
+
+import ce.model.User;
 
 import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;

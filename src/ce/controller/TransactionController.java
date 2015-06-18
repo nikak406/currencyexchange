@@ -1,4 +1,12 @@
-package ce;
+package ce.controller;
+
+import ce.view.CurrentTransaction;
+import ce.model.LoggedInUser;
+import ce.view.NewTransaction;
+import ce.model.TransactionDAO;
+import ce.model.ExchangeOrder;
+import ce.model.Transaction;
+import ce.model.User;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

@@ -1,4 +1,7 @@
-package ce;
+package ce.view;
+
+import ce.model.PasswordHash;
+import ce.model.User;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -7,7 +10,7 @@ import javax.faces.bean.ManagedBean;
 //TODO override messages regex not matched in xhtml
 //TODO add select instead of inputText for location
 //TODO add regex pattern for phone
-public class Register extends User{
+public class Register extends User {
 
     public Register() {}
 

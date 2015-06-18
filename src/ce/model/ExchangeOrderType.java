@@ -1,4 +1,4 @@
-package ce;
+package ce.model;
 
 public enum ExchangeOrderType {
 	BUY,

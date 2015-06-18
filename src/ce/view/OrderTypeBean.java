@@ -1,4 +1,6 @@
-package ce;
+package ce.view;
+
+import ce.model.ExchangeOrderType;
 
 import javax.faces.bean.ManagedBean;
 

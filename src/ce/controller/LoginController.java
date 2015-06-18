@@ -1,4 +1,8 @@
-package ce;
+package ce.controller;
+
+import ce.model.LoggedInUser;
+import ce.view.Login;
+import ce.model.User;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

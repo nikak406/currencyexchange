@@ -1,4 +1,6 @@
-package ce;
+package ce.view;
+
+import ce.model.ExchangeOrder;
 
 import javax.ejb.Singleton;
 import javax.faces.bean.SessionScoped;

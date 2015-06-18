@@ -1,4 +1,4 @@
-package ce;
+package ce.model;
 
 import javax.ejb.Stateless;
 import java.security.MessageDigest;

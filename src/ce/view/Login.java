@@ -1,4 +1,6 @@
-package ce;
+package ce.view;
+
+import ce.model.PasswordHash;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

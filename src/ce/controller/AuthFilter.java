@@ -1,4 +1,4 @@
-package ce;
+package ce.controller;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

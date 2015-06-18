@@ -1,4 +1,4 @@
-package ce;
+package ce.controller;
 
 import javax.ejb.Stateless;
 import javax.faces.context.FacesContext;

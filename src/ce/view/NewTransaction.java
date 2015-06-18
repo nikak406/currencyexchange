@@ -1,4 +1,6 @@
-package ce;
+package ce.view;
+
+import ce.model.Transaction;
 
 import javax.faces.bean.ManagedBean;
 
