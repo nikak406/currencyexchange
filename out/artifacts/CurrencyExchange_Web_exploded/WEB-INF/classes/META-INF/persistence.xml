@@ -4,9 +4,9 @@
     <persistence-unit name="ce" transaction-type="JTA">
         <jta-data-source>jdbc/__default</jta-data-source>
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>ce.User</class>
-        <class>ce.ExchangeOrder</class>
-        <class>ce.Transaction</class>
+        <class>ce.model.User</class>
+        <class>ce.model.ExchangeOrder</class>
+        <class>ce.model.Transaction</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ce;create=true"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

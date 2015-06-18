@@ -11,7 +11,7 @@
       <column name="NUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="CLOSED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
       <column name="CURRENCY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="EXCHANGEORDERTYPE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="MAXAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="RATE" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
@@ -24,7 +24,7 @@
     <table name="TRANSACTION" schema="" catalog="ce" type="TABLE">
       <column name="NUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="AMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="DATE" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="CUSTOMER_LOGIN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="ORDER_NUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="NUMBER"/>
