@@ -10,7 +10,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -23,10 +22,10 @@ public class LoginController implements Serializable{
 	UserController userController;
 
 	@EJB
-	CookiesController cookiesController;
+	CookiesHandler cookiesHandler;
 
 	@EJB
-	FacesContextBean fcb;
+	FacesContextValue fcb;
 
 	@EJB
 	LoggedInUser loggedInUser;
@@ -37,7 +36,7 @@ public class LoginController implements Serializable{
 
     public boolean isLoginCorrect(Login login){
         User user = userController.getUser(login.getLogin());
-        FacesContext fc = fcb.getFC();
+        javax.faces.context.FacesContext fc = fcb.getInstance();
         if (user == null) {
             fc.addMessage(loginField.getClientId(fc), new FacesMessage("Login is wrong"));
             return false;
@@ -48,22 +47,22 @@ public class LoginController implements Serializable{
     }
 
 	public void logout() { //TODO: get rid of ignored exception
-        FacesContext fc = fcb.getFC();
+        javax.faces.context.FacesContext fc = fcb.getInstance();
 		loggedInUser.setUser(null);
         try {
-			cookiesController.dropCookies();
+			cookiesHandler.dropCookies();
             fc.getExternalContext().redirect("/login.xhtml");
         } catch (IOException ignored) {}
     }
 
 	public void login(Login login){ //TODO: get rid of ignored exception
-        FacesContext fc = fcb.getFC();
+        javax.faces.context.FacesContext fc = fcb.getInstance();
         if (isLoginCorrect(login)){
             String currentLogin = login.getLogin();
 			User currentUser = userController.getUser(currentLogin);
 			loggedInUser.setUser(currentUser);
             if(login.isRemember()){
-				cookiesController.addCookies(login.getLogin(), login.getPassword());
+				cookiesHandler.addCookies(login.getLogin(), login.getPassword());
             }
             try {
                 fc.getExternalContext().redirect("/ce/home.xhtml");
@@ -91,8 +90,9 @@ public class LoginController implements Serializable{
         this.passwordField = passwordField;
     }
 
+	//TODO refactor here
 	public String tryAutoLogin(){
-		Login login = cookiesController.getCookiesLogin();
+		Login login = cookiesHandler.getCookiesLogin();
 		if (login != null) login(login);
 		return " ";
     }

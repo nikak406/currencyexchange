@@ -1,6 +1,6 @@
 package ce.model;
 
-public enum ExchangeOrderType {
+public enum OrderType {
 	BUY,
 	SELL;
 

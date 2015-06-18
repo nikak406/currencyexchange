@@ -4,10 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-//TODO refactor names
-//TODO refactor packets
-@Entity
-public class ExchangeOrder implements Serializable {
+@Entity(name="Orders")
+public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +20,7 @@ public class ExchangeOrder implements Serializable {
 	//TODO change String to Currency
     private String currency;
 
-	private ExchangeOrderType exchangeOrderType;
+	private OrderType orderType;
 
 	private int maxAmount;
 
@@ -30,15 +28,15 @@ public class ExchangeOrder implements Serializable {
 
 	private boolean closed = false;
 
-	public ExchangeOrder(){}
+	public Order(){}
 
-    public ExchangeOrder(Date date, User dealer, String currency, ExchangeOrderType exchangeOrderType,
-                         int maxAmount, double rate){
+    public Order(Date date, User dealer, String currency, OrderType orderType,
+			int maxAmount, double rate){
 		this.setDate(date);
 		this.setDealer(dealer);
 		this.setCurrency(currency);
 		this.setMaxAmount(maxAmount);
-		this.setExchangeOrderType(exchangeOrderType);
+		this.setOrderType(orderType);
 		this.setRate(rate);
 		this.setClosed(false);
 	}
@@ -75,12 +73,12 @@ public class ExchangeOrder implements Serializable {
 		this.currency = currency;
 	}
 
-	public ExchangeOrderType getExchangeOrderType() {
-		return exchangeOrderType;
+	public OrderType getOrderType() {
+		return orderType;
 	}
 
-	public void setExchangeOrderType(ExchangeOrderType exchangeOrderType) {
-		this.exchangeOrderType = exchangeOrderType;
+	public void setOrderType(OrderType orderType) {
+		this.orderType = orderType;
 	}
 
 	public int getMaxAmount() {

@@ -1,9 +1,9 @@
 package ce.controller;
 
-import ce.model.ExchangeOrderDAO;
+import ce.model.OrderDAO;
 import ce.model.LoggedInUser;
 import ce.view.NewOrder;
-import ce.model.ExchangeOrder;
+import ce.model.Order;
 import ce.model.User;
 
 import javax.ejb.EJB;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 @ManagedBean
 @Stateless
-public class ExchangeOrderController {
+public class OrderController {
 
 	@EJB
 	LoggedInUser loggedInUser;
@@ -24,34 +24,34 @@ public class ExchangeOrderController {
     UserController userController;
 
     @EJB
-	ExchangeOrderDAO exchangeOrderDAO;
+	OrderDAO orderDAO;
 
     public void addOrder(NewOrder newOrder) {
         Date now = new Date();
         User currentUser = loggedInUser.getUser();
-        ExchangeOrder order = new ExchangeOrder(now, currentUser, newOrder.getCurrency(),
-                newOrder.getExchangeOrderType(), newOrder.getMaxAmount(), newOrder.getRate());
-        exchangeOrderDAO.registerOrder(order);
+        Order order = new Order(now, currentUser, newOrder.getCurrency(),
+                newOrder.getOrderType(), newOrder.getMaxAmount(), newOrder.getRate());
+        orderDAO.saveOrder(order);
     }
 
-    public List<ExchangeOrder> getOrders(){
-        return exchangeOrderDAO
+    public List<Order> getOrders(){
+        return orderDAO
 				.getOrders()
 				.stream()
 				.sorted((order1, order2) -> order1.getDate().compareTo(order2.getDate()))
 				.collect(Collectors.toList());
     }
 
-	public List<ExchangeOrder> getMyOrders(){
+	public List<Order> getMyOrders(){
 		User currentUser = loggedInUser.getUser();
-		List<ExchangeOrder> allOrders = getOrders();
+		List<Order> allOrders = getOrders();
 		return allOrders
 				.stream()
 				.filter(order -> order.getDealer().equals(currentUser))
 				.collect(Collectors.toList());
 	}
 
-	public void updateOrder(ExchangeOrder order){
-		exchangeOrderDAO.updateOrder(order);
+	public void updateOrder(Order order){
+		orderDAO.updateOrder(order);
 	}
 }

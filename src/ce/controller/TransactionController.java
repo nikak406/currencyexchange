@@ -1,10 +1,10 @@
 package ce.controller;
 
-import ce.view.CurrentTransaction;
+import ce.model.CurrentTransaction;
 import ce.model.LoggedInUser;
 import ce.view.NewTransaction;
 import ce.model.TransactionDAO;
-import ce.model.ExchangeOrder;
+import ce.model.Order;
 import ce.model.Transaction;
 import ce.model.User;
 
@@ -30,7 +30,7 @@ public class TransactionController {
 	TransactionDAO transactionDAO;
 
 	@EJB
-	ExchangeOrderController exchangeOrderController;
+	OrderController orderController;
 
 	@EJB
 	LoggedInUser loggedInUser;
@@ -57,7 +57,7 @@ public class TransactionController {
 	}
 
 	public void addTransaction(NewTransaction newTransaction){
-		ExchangeOrder order = currentTransaction.getOrder();
+		Order order = currentTransaction.getOrder();
 		if (order == null) return;
 		int maxAmount = order.getMaxAmount();
 		int amount = newTransaction.getAmount();
@@ -66,7 +66,7 @@ public class TransactionController {
 			amount = maxAmount;
 		}
 		order.setMaxAmount(maxAmount - amount);
-		exchangeOrderController.updateOrder(order);
+		orderController.updateOrder(order);
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
 		User customer = loggedInUser.getUser();
@@ -77,12 +77,12 @@ public class TransactionController {
 		transactionDAO.registerTransaction(transaction);
 	}
 
-	public void addTransactionOrder(ExchangeOrder order){
+	public void addTransactionOrder(Order order){
 		currentTransaction.setOrder(order);
 	}
 
-	public List<ExchangeOrder> getCurrentTransaction(){
-		List<ExchangeOrder> list = new ArrayList<>();
+	public List<Order> getCurrentTransaction(){
+		List<Order> list = new ArrayList<>();
 		list.add(currentTransaction.getOrder());
 		return list;
 	}

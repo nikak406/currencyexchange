@@ -17,7 +17,7 @@ public class Transaction implements Serializable {
 	private int amount;
 
 	@ManyToOne
-    private ExchangeOrder order;
+    private Order order;
 
 	@ManyToOne
     private User customer;
@@ -40,11 +40,11 @@ public class Transaction implements Serializable {
 		this.amount = amount;
 	}
 
-	public ExchangeOrder getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(ExchangeOrder order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 

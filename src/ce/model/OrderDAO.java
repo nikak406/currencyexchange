@@ -1,7 +1,5 @@
 package ce.model;
 
-import ce.model.ExchangeOrder;
-
 import javax.ejb.Singleton;
 import javax.faces.bean.ApplicationScoped;
 import javax.persistence.EntityManager;
@@ -14,25 +12,25 @@ import java.util.List;
 
 @Singleton
 @ApplicationScoped
-public class ExchangeOrderDAO {
+public class OrderDAO {
 
 	@PersistenceContext
 	EntityManager em;
 
-	public void registerOrder(ExchangeOrder exchangeOrder){
-		em.persist(exchangeOrder);
+	public void saveOrder(Order order){
+		em.persist(order);
 	}
 
-	public void updateOrder(ExchangeOrder exchangeOrder){
-		em.merge(exchangeOrder);
+	public void updateOrder(Order order){
+		em.merge(order);
 	}
 
-	public List<ExchangeOrder> getOrders(){
+	public List<Order> getOrders(){
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<ExchangeOrder> cq = cb.createQuery(ExchangeOrder.class);
-		Root<ExchangeOrder> rootEntry = cq.from(ExchangeOrder.class);
-		CriteriaQuery<ExchangeOrder> all = cq.select(rootEntry);
-		TypedQuery<ExchangeOrder> allQuery = em.createQuery(all);
+		CriteriaQuery<Order> cq = cb.createQuery(Order.class);
+		Root<Order> rootEntry = cq.from(Order.class);
+		CriteriaQuery<Order> all = cq.select(rootEntry);
+		TypedQuery<Order> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
 }

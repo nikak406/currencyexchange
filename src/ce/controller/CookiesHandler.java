@@ -4,23 +4,22 @@ import ce.view.Login;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 //TODO testing required, probably functional is doing wrong
 @Stateless
-public class CookiesController {
+public class CookiesHandler {
 
 	@EJB
-	FacesContextBean fcb;
+	FacesContextValue fcb;
 
 	public static final int ZERO = 0;
 	public static final int MONTH = 60*60*24*30;
 
 	public void addCookies(String login, String password){
-		FacesContext fc = fcb.getFC();
+		javax.faces.context.FacesContext fc = fcb.getInstance();
 		HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		Cookie loginCookie = new Cookie("login", login);
 		loginCookie.setMaxAge(MONTH);
@@ -31,7 +30,7 @@ public class CookiesController {
 	}
 
 	public Login getCookiesLogin(){
-		FacesContext fc = fcb.getFC();
+		javax.faces.context.FacesContext fc = fcb.getInstance();
 		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
 		//HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		Cookie[] cookies = request.getCookies();
@@ -56,7 +55,7 @@ public class CookiesController {
 	}
 
 	public void dropCookies(){
-		FacesContext fc = fcb.getFC();
+		javax.faces.context.FacesContext fc = fcb.getInstance();
 		HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
 		Cookie[] cookies = request.getCookies();

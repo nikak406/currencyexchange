@@ -1,6 +1,4 @@
-package ce.view;
-
-import ce.model.ExchangeOrder;
+package ce.model;
 
 import javax.ejb.Singleton;
 import javax.faces.bean.SessionScoped;
@@ -9,15 +7,16 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 //TODO @FlowScoped()
 //@Stateful
+//TODO refactor name
 public class CurrentTransaction {
 
-	private ExchangeOrder order;
+	private Order order;
 
-	public ExchangeOrder getOrder() {
+	public Order getOrder() {
 		return order;
 	}
 
-	public void setOrder(ExchangeOrder order) {
+	public void setOrder(Order order) {
 		this.order = order;
 	}
 }

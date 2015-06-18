@@ -9,7 +9,7 @@
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:dataTable value="#{exchangeOrderController.myOrders}" var="order">
+                <h:dataTable value="#{orderController.myOrders}" var="order">
                     <h:column>
                         <f:facet name="header">Currency</f:facet>
                         #{order.currency}
@@ -20,7 +20,7 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Type</f:facet>
-                        #{order.exchangeOrderType}
+                        #{order.orderType}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Name</f:facet>

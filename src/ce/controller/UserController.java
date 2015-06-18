@@ -10,7 +10,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 import java.util.List;
 
 @ManagedBean
@@ -21,7 +20,7 @@ public class UserController {
 	UserDAO userDAO;
 
 	@EJB
-	FacesContextBean fcb;
+	FacesContextValue fcb;
 
 	@EJB
 	LoggedInUser loggedInUser;
@@ -46,7 +45,7 @@ public class UserController {
 		User user = new User(register.getLogin(), register.getPassword(), register.getName(),
 				register.getEmail(), register.getLocation(), register.getRoom(), register.getPhoneNumber());
 		userDAO.registerUser(user);
-		FacesContext fc = fcb.getFC();
+		javax.faces.context.FacesContext fc = fcb.getInstance();
 		fc.addMessage(null, new FacesMessage("Successfully registered"));
 	}
 
@@ -67,7 +66,7 @@ public class UserController {
 		}
 		loggedInUser.setNotifyViaMail(currentUser.getNotifyViaMail());
 		userDAO.updateUser(loggedInUser);
-		FacesContext fc = fcb.getFC();
+		javax.faces.context.FacesContext fc = fcb.getInstance();
 		fc.addMessage(null, new FacesMessage("Successfully saved"));
 	}
 }
