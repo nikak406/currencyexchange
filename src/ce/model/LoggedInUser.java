@@ -1,14 +1,13 @@
 package ce.model;
 
-import ce.model.User;
-
 import javax.ejb.Singleton;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+import java.io.Serializable;
 
 //TODO functional is doing wrong
 @Singleton
-@SessionScoped
-public class LoggedInUser {
+@ApplicationScoped
+public class LoggedInUser implements Serializable{
 
     private User user;
 

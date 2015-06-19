@@ -1,14 +1,15 @@
 package ce.model;
 
 import javax.ejb.Singleton;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
+import java.io.Serializable;
 
 @Singleton
-@SessionScoped
+@ApplicationScoped
 //TODO @FlowScoped()
 //@Stateful
 //TODO refactor name
-public class CurrentTransaction {
+public class CurrentTransaction implements Serializable {
 
 	private Order order;
 

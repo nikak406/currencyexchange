@@ -1,6 +1,8 @@
 package ce.model;
 
-public enum OrderType {
+import java.io.Serializable;
+
+public enum OrderType implements Serializable {
 	BUY,
 	SELL;
 

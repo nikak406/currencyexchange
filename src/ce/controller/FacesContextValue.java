@@ -1,4 +1,4 @@
-package ce.view;
+package ce.controller;
 
 import javax.ejb.Stateless;
 

@@ -3,7 +3,7 @@ package ce.model.DAO;
 import ce.model.Order;
 
 import javax.ejb.Singleton;
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

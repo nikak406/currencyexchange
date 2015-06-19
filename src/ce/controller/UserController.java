@@ -1,19 +1,18 @@
 package ce.controller;
 
+import ce.model.DAO.UserDAO;
 import ce.model.LoggedInUser;
 import ce.model.User;
-import ce.model.DAO.UserDAO;
 import ce.view.CurrentUser;
-import ce.view.FacesContextValue;
 import ce.view.NewUser;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import java.util.List;
 
-@ManagedBean
+@Named
 @Stateless
 public class UserController {
 

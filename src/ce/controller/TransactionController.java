@@ -1,22 +1,18 @@
 package ce.controller;
 
-import ce.model.CurrentTransaction;
-import ce.model.LoggedInUser;
-import ce.view.NewTransaction;
+import ce.model.*;
 import ce.model.DAO.TransactionDAO;
-import ce.model.Order;
-import ce.model.Transaction;
-import ce.model.User;
+import ce.view.NewTransaction;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ManagedBean
+@Named
 @Stateless
 public class TransactionController {
 

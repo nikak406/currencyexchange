@@ -2,18 +2,18 @@ package ce.controller;
 
 import ce.model.DAO.OrderDAO;
 import ce.model.LoggedInUser;
-import ce.view.NewOrder;
 import ce.model.Order;
 import ce.model.User;
+import ce.view.NewOrder;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.faces.bean.ManagedBean;
+import javax.inject.Named;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@ManagedBean
+@Named
 @Stateless
 public class OrderController {
 

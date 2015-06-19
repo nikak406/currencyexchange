@@ -2,22 +2,19 @@ package ce.controller;
 
 import ce.controller.auth.CookiesHandler;
 import ce.model.LoggedInUser;
-import ce.view.FacesContextValue;
-import ce.view.Login;
 import ce.model.User;
+import ce.view.Login;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
+import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 
-@ManagedBean
+@Named
 @Stateless
-@SessionScoped
 public class LoginController implements Serializable{
 
 	@EJB
@@ -37,7 +34,8 @@ public class LoginController implements Serializable{
 	private UIComponent passwordField;
 
     public boolean isLoginCorrect(Login login){
-        User user = userController.getUser(login.getLogin());
+        String loginString = login.getLogin();
+		User user = userController.getUser(loginString);
         javax.faces.context.FacesContext fc = fcb.getInstance();
         if (user == null) {
             fc.addMessage(loginField.getClientId(fc), new FacesMessage("Login is wrong"));
@@ -48,7 +46,7 @@ public class LoginController implements Serializable{
         return result;
     }
 
-	public void logout() { //TODO: get rid of ignored exception
+	public void logout() {
         javax.faces.context.FacesContext fc = fcb.getInstance();
 		loggedInUser.setUser(null);
         try {
@@ -57,7 +55,7 @@ public class LoginController implements Serializable{
         } catch (IOException ignored) {}
     }
 
-	public void login(Login login){ //TODO: get rid of ignored exception
+	public void login(Login login){
         javax.faces.context.FacesContext fc = fcb.getInstance();
         if (isLoginCorrect(login)){
             String currentLogin = login.getLogin();

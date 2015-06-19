@@ -4,9 +4,11 @@ import ce.model.PasswordHash;
 import ce.model.User;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
+@RequestScoped
 //TODO override messages regex not matched in xhtml
 //TODO add select instead of inputText for location
 //TODO add regex pattern for phone

@@ -2,9 +2,11 @@ package ce.view;
 
 import ce.model.Transaction;
 
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
-@ManagedBean
+@Named
+@RequestScoped
 public class NewTransaction extends Transaction {
 	public NewTransaction(){}
 }

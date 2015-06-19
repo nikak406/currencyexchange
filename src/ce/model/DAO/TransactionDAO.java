@@ -4,7 +4,7 @@ import ce.model.Transaction;
 import ce.model.User;
 
 import javax.ejb.Singleton;
-import javax.faces.bean.ApplicationScoped;
+import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;

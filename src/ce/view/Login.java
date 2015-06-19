@@ -3,10 +3,13 @@ package ce.view;
 import ce.model.PasswordHash;
 
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import java.io.Serializable;
 
-@ManagedBean
-public class Login {
+@Named
+@RequestScoped
+public class Login implements Serializable {
 
     public Login() {}
 

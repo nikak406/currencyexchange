@@ -1,6 +1,6 @@
 package ce.controller.auth;
 
-import ce.view.FacesContextValue;
+import ce.controller.FacesContextValue;
 import ce.view.Login;
 
 import javax.ejb.EJB;
