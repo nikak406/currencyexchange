@@ -9,7 +9,7 @@
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:dataTable value="#{exchangeOrderController.orders}" var="order">
+                <h:dataTable value="#{orderController.orders}" var="order">
                     <h:column>
                         <f:facet name="header">Currency</f:facet>
                         #{order.currency}
@@ -20,15 +20,34 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">Type</f:facet>
-                        #{order.exchangeOrderType}
+                        #{order.orderType}
                     </h:column>
                     <h:column>
                         <f:facet name="header">Name</f:facet>
                         #{order.dealer.name}
                     </h:column>
                     <h:column>
+                        <f:facet name="header">Rate</f:facet>
+                        #{order.rate}
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">Date</f:facet>
                         #{order.date}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Phone</f:facet>
+                        #{order.dealer.phoneNumber}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Location</f:facet>
+                        #{order.dealer.location}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Add Transaction</f:facet>
+                        <h:commandButton id="addTransactionButton"
+                                         action="addTransaction"
+                                         value="+"
+                                         actionListener="#{transactionController.addTransactionOrder(order)}"/>
                     </h:column>
                 </h:dataTable>
             </h:form>
