@@ -6,8 +6,7 @@ import java.io.Serializable;
 
 @Singleton
 @ApplicationScoped
-//TODO @FlowScoped()
-//@Stateful
+//TODO @ConversationScoped() EJB
 //TODO refactor name
 public class CurrentTransaction implements Serializable {
 

@@ -1,7 +1,6 @@
 package ce.model.DAO;
 
 import ce.model.Transaction;
-import ce.model.User;
 
 import javax.ejb.Singleton;
 import javax.enterprise.context.ApplicationScoped;
@@ -36,12 +35,4 @@ public class TransactionDAO {
 		TypedQuery<Transaction> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
-
-	public List<Transaction> getTransactions(User user){
-		List<Transaction> allTransactions = getTransactions();
-		//TODO
-		return allTransactions;
-	}
-
-	//TODO public Transaction getTransaction(int number)
 }

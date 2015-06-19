@@ -9,9 +9,8 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-//TODO override messages regex not matched in xhtml
 //TODO add select instead of inputText for location
-//TODO add regex pattern for phone
+//TODO add regex pattern for phone and email and room
 public class NewUser extends User {
 
     public NewUser() {}

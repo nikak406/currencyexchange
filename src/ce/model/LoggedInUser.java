@@ -4,7 +4,7 @@ import javax.ejb.Singleton;
 import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
 
-//TODO functional is doing wrong
+//TODO switch to inject sessionscoped CDI bean
 @Singleton
 @ApplicationScoped
 public class LoggedInUser implements Serializable{
