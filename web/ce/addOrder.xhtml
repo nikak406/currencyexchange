@@ -11,7 +11,10 @@
             <h:form>
                 <h:panelGrid columns="3">
                     <h:outputText value="Currency:" />
-                    <h:inputText value="#{newOrder.currency}" id="currency"/>
+                    <h:selectOneMenu id="currency" value="#{newOrder.currency}">
+                        <f:selectItems value="#{currencyValues.values}" var="currency"
+                                       itemValue="#{currency}" itemLabel="#{currency.label}"/>
+                    </h:selectOneMenu>
                     <h:message for="currency" style="color: red" />
                     <h:outputText value="Exchange Rate:" />
                     <h:inputText value="#{newOrder.rate}" id="rate"/>
