@@ -90,10 +90,8 @@ public class LoginController implements Serializable{
         this.passwordField = passwordField;
     }
 
-	//TODO refactor here
-	public String tryAutoLogin(){
+	public void tryAutoLogin(){
 		Login login = cookiesHandler.getCookiesLogin();
 		if (login != null) login(login);
-		return " ";
-    }
+	}
 }

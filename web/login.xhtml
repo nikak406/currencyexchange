@@ -6,12 +6,13 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
+    <!--tryAutoLogin() can redirect automatically-->
+    #{loginController.tryAutoLogin()}
     <title>Currency Exchange Login</title>
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
 <h:form>
-    <h:outputText value="#{loginController.tryAutoLogin()}"/>
     <h:messages style="color: green" globalOnly="true"/>
     <h:panelGrid columns="3">
         <h:outputText value="Login:" />
