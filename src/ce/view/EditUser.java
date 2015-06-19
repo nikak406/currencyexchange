@@ -7,7 +7,6 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-//TODO refactor name
-public class CurrentUser extends User {
-	public CurrentUser(){}
+public class EditUser extends User {
+	public EditUser(){}
 }

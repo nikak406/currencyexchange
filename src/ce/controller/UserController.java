@@ -3,7 +3,7 @@ package ce.controller;
 import ce.model.DAO.UserDAO;
 import ce.model.LoggedInUser;
 import ce.model.User;
-import ce.view.CurrentUser;
+import ce.view.EditUser;
 import ce.view.NewUser;
 
 import javax.ejb.EJB;
@@ -50,21 +50,21 @@ public class UserController {
 	}
 
 	//TODO add prefilled fields
-	public void update(CurrentUser currentUser){
+	public void update(EditUser editUser){
 		User loggedInUser = this.loggedInUser.getUser();
-		if (currentUser.getLocation() != null) {
-			loggedInUser.setLocation(currentUser.getLocation());
+		if (editUser.getLocation() != null) {
+			loggedInUser.setLocation(editUser.getLocation());
 		}
-		if (currentUser.getRoom() != null) {
-			loggedInUser.setRoom(currentUser.getRoom());
+		if (editUser.getRoom() != null) {
+			loggedInUser.setRoom(editUser.getRoom());
 		}
-		if (currentUser.getEmail() != null) {
-			loggedInUser.setEmail(currentUser.getEmail());
+		if (editUser.getEmail() != null) {
+			loggedInUser.setEmail(editUser.getEmail());
 		}
-		if (currentUser.getPhoneNumber() != null) {
-			loggedInUser.setPhoneNumber(currentUser.getPhoneNumber());
+		if (editUser.getPhoneNumber() != null) {
+			loggedInUser.setPhoneNumber(editUser.getPhoneNumber());
 		}
-		loggedInUser.setNotifyViaMail(currentUser.getNotifyViaMail());
+		loggedInUser.setNotifyViaMail(editUser.getNotifyViaMail());
 		userDAO.updateUser(loggedInUser);
 		javax.faces.context.FacesContext fc = fcb.getInstance();
 		fc.addMessage(null, new FacesMessage("Successfully saved"));

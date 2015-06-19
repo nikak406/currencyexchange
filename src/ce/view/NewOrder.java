@@ -5,7 +5,6 @@ import ce.model.Order;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-//TODO add currency selection menu
 //TODO add popup
 //TODO add css
 @Named
