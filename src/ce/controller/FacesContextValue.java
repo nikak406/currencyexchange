@@ -1,11 +1,12 @@
 package ce.controller;
 
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 
 @Stateless
 public class FacesContextValue {
-	public javax.faces.context.FacesContext getInstance(){
-		return javax.faces.context.FacesContext.getCurrentInstance();
+	public FacesContext getInstance(){
+		return FacesContext.getCurrentInstance();
 	}
 }
 

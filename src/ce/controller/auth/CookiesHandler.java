@@ -33,7 +33,6 @@ public class CookiesHandler {
 	public Login getCookiesLogin(){
 		javax.faces.context.FacesContext fc = fcb.getInstance();
 		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
-		//HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		Cookie[] cookies = request.getCookies();
 		String login = null;
 		String password = null;

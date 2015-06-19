@@ -3,14 +3,13 @@ package ce.controller.auth;
 import ce.controller.LoginController;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 //TODO not working
-@WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/ce/*")
+//@WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
 public class AuthFilter implements Filter {
 
 	public void destroy() {}

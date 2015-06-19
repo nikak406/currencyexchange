@@ -51,7 +51,7 @@ public class TransactionController {
 						|| transaction.getOrder().getDealer().equals(currentUser))
 				.collect(Collectors.toList());
 	}
-
+// TODO Mail
 	public void addTransaction(NewTransaction newTransaction){
 		Order order = currentTransaction.getOrder();
 		if (order == null) return;
