@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
+//TODO @WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
 public class AuthFilter implements Filter {
 
 	public void destroy() {}
