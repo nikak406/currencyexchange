@@ -1,7 +1,6 @@
 package ce.controller;
 
 import ce.controller.auth.CookiesHandler;
-import ce.model.LoggedInUser;
 import ce.model.User;
 import ce.view.Login;
 
@@ -9,6 +8,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
@@ -26,8 +26,8 @@ public class LoginController implements Serializable{
 	@EJB
 	FacesContextValue fcb;
 
-	@EJB
-	LoggedInUser loggedInUser;
+    @EJB
+    LoginService loginService;
 
 	private UIComponent loginField;
 
@@ -36,7 +36,7 @@ public class LoginController implements Serializable{
     public boolean isLoginCorrect(Login login){
         String loginString = login.getLogin();
 		User user = userController.getUser(loginString);
-        javax.faces.context.FacesContext fc = fcb.getInstance();
+        FacesContext fc = fcb.getInstance();
         if (user == null) {
             fc.addMessage(loginField.getClientId(fc), new FacesMessage("Login is wrong"));
             return false;
@@ -48,7 +48,7 @@ public class LoginController implements Serializable{
 
 	public void logout() {
         javax.faces.context.FacesContext fc = fcb.getInstance();
-		loggedInUser.setUser(null);
+		loginService.removeUser();
         try {
 			cookiesHandler.dropCookies();
             fc.getExternalContext().redirect("/login.xhtml");
@@ -60,7 +60,7 @@ public class LoginController implements Serializable{
         if (isLoginCorrect(login)){
             String currentLogin = login.getLogin();
 			User currentUser = userController.getUser(currentLogin);
-			loggedInUser.setUser(currentUser);
+			loginService.setUser(currentUser);
             if(login.isRemember()){
 				cookiesHandler.addCookies(login.getLogin(), login.getPassword());
             }
@@ -71,7 +71,7 @@ public class LoginController implements Serializable{
     }
 
 	public String getCurrentLogin() {
-        return loggedInUser.getLogin();
+        return loginService.getUser().getLogin();
     }
 
 	public UIComponent getLoginField() {

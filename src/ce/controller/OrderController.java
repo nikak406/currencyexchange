@@ -1,13 +1,13 @@
 package ce.controller;
 
 import ce.model.DAO.OrderDAO;
-import ce.model.LoggedInUser;
 import ce.model.Order;
 import ce.model.User;
 import ce.view.NewOrder;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
 import java.util.List;
@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @Stateless
 public class OrderController {
 
-	@EJB
-	LoggedInUser loggedInUser;
+	@Inject @LoggenInUser
+    User loggedInUser;
 
     @EJB
     UserController userController;
@@ -28,8 +28,7 @@ public class OrderController {
 
     public void addOrder(NewOrder newOrder) {
         Date now = new Date();
-        User currentUser = loggedInUser.getUser();
-        Order order = new Order(now, currentUser, newOrder.getCurrency(),
+        Order order = new Order(now, loggedInUser, newOrder.getCurrency(),
                 newOrder.getOrderType(), newOrder.getMaxAmount(), newOrder.getRate());
         orderDAO.saveOrder(order);
     }
@@ -43,11 +42,10 @@ public class OrderController {
     }
 
 	public List<Order> getMyOrders(){
-		User currentUser = loggedInUser.getUser();
 		List<Order> allOrders = getOrders();
 		return allOrders
 				.stream()
-				.filter(order -> order.getDealer().equals(currentUser))
+				.filter(order -> order.getDealer().equals(loggedInUser))
 				.collect(Collectors.toList());
 	}
 

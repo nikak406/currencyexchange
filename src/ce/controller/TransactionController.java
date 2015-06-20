@@ -6,6 +6,7 @@ import ce.view.NewTransaction;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.Date;
@@ -28,8 +29,8 @@ public class TransactionController {
 	@EJB
 	OrderController orderController;
 
-	@EJB
-	LoggedInUser loggedInUser;
+    @Inject @LoggenInUser
+    User loggedInUser;
 
 	@EJB
 	CurrentTransaction currentTransaction;
@@ -44,11 +45,10 @@ public class TransactionController {
 
 	public List<Transaction> getMyTransactions(){
 		List<Transaction> allTransactions = getTransactions();
-		User currentUser = loggedInUser.getUser();
 		return allTransactions
 				.stream()
-				.filter(transaction -> transaction.getCustomer().equals(currentUser)
-						|| transaction.getOrder().getDealer().equals(currentUser))
+				.filter(transaction -> transaction.getCustomer().equals(loggedInUser)
+						|| transaction.getOrder().getDealer().equals(loggedInUser))
 				.collect(Collectors.toList());
 	}
 // TODO Mail
@@ -65,8 +65,7 @@ public class TransactionController {
 		orderController.updateOrder(order);
 		Transaction transaction = new Transaction();
 		transaction.setAmount(amount);
-		User customer = loggedInUser.getUser();
-		transaction.setCustomer(customer);
+		transaction.setCustomer(loggedInUser);
 		Date now = new Date();
 		transaction.setDate(now);
 		transaction.setOrder(order);

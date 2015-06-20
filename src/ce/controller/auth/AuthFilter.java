@@ -1,15 +1,16 @@
 package ce.controller.auth;
 
 import ce.controller.LoginController;
+import ce.controller.LoginService;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//TODO not working
-//@WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
+@WebFilter(filterName = "AuthFilter", urlPatterns = "/ce/*")
 public class AuthFilter implements Filter {
 
 	public void destroy() {}
@@ -18,11 +19,11 @@ public class AuthFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
     	HttpSession session = request.getSession();
-		if (session != null){
-			LoginController lc = (LoginController) session.getAttribute("loginController");
-			if (lc == null || lc.getCurrentLogin() == null) response.sendRedirect("/login.xhtml");
-		} else {
-			response.sendRedirect("/login.xhtml");
+		if (session == null) {
+            response.sendRedirect("/login.xhtml");
+        } else {
+            Object login = session.getAttribute(LoginService.LOGIN);
+			if (login == null) response.sendRedirect("/login.xhtml");
 		}
         chain.doFilter(req, resp);
     }

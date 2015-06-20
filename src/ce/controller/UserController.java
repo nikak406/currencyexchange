@@ -1,7 +1,6 @@
 package ce.controller;
 
 import ce.model.DAO.UserDAO;
-import ce.model.LoggedInUser;
 import ce.model.User;
 import ce.view.EditUser;
 import ce.view.NewUser;
@@ -9,6 +8,7 @@ import ce.view.NewUser;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
@@ -22,8 +22,8 @@ public class UserController {
 	@EJB
 	FacesContextValue fcb;
 
-	@EJB
-	LoggedInUser loggedInUser;
+    @Inject @LoggenInUser
+    User loggedInUser;
 
 	public List<User> getUsers(){
 		return userDAO.getUsers();
@@ -51,7 +51,6 @@ public class UserController {
 
 	//TODO add prefilled fields
 	public void update(EditUser editUser){
-		User loggedInUser = this.loggedInUser.getUser();
 		if (editUser.getLocation() != null) {
 			loggedInUser.setLocation(editUser.getLocation());
 		}
