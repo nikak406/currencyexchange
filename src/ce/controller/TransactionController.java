@@ -2,6 +2,7 @@ package ce.controller;
 
 import ce.model.*;
 import ce.model.DAO.TransactionDAO;
+import ce.view.IntBean;
 import ce.view.NewTransaction;
 
 import javax.ejb.EJB;
@@ -33,7 +34,7 @@ public class TransactionController {
     User loggedInUser;
 
 	@EJB
-	CurrentTransaction currentTransaction;
+    NewTransaction newTransaction;
 
 	private List<Transaction> getTransactions(){
 		return transactionDAO
@@ -52,13 +53,13 @@ public class TransactionController {
 				.collect(Collectors.toList());
 	}
 // TODO Mail
-	public void addTransaction(NewTransaction newTransaction){
-		Order order = currentTransaction.getOrder();
+	public void addTransaction(IntBean intBean){
+		Order order = newTransaction.getOrder();
 		if (order == null) return;
 		int maxAmount = order.getMaxAmount();
-		int amount = newTransaction.getAmount();
+		int amount = intBean.getValue();
 		if (maxAmount < amount){
-			newTransaction.setAmount(maxAmount);
+			intBean.setValue(maxAmount);
 			amount = maxAmount;
 		}
 		order.setMaxAmount(maxAmount - amount);
@@ -73,12 +74,12 @@ public class TransactionController {
 	}
 
 	public void addTransactionOrder(Order order){
-		currentTransaction.setOrder(order);
+		newTransaction.setOrder(order);
 	}
 
-	public List<Order> getCurrentTransaction(){
+	public List<Order> getNewTransaction(){
 		List<Order> list = new ArrayList<>();
-		list.add(currentTransaction.getOrder());
+		list.add(newTransaction.getOrder());
 		return list;
 	}
 }

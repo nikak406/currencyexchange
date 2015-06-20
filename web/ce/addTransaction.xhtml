@@ -8,7 +8,7 @@
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
-            <h:dataTable value="#{transactionController.currentTransaction}" var="order">
+            <h:dataTable value="#{transactionController.newTransaction}" var="order">
                 <h:column>
                     <f:facet name="header">Currency</f:facet>
                     #{order.currency}
@@ -46,12 +46,12 @@
             <h:form>
                 <h:panelGrid columns="4">
                     <h:outputText value="Amount:" />
-                    <h:inputText value="#{newTransaction.amount}" id="amount"/>
+                    <h:inputText value="#{intBean.value}" id="amount"/>
                     <h:message for="amount" style="color: red" />
                     <h:commandButton id="commitTransactionButton"
                                      action="transactions"
                                      value="Commit Transaction"
-                                     actionListener="#{transactionController.addTransaction(newTransaction)}"/>
+                                     actionListener="#{transactionController.addTransaction(intBean)}"/>
                 </h:panelGrid>
             </h:form>
         </ui:define>
