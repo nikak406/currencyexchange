@@ -11,17 +11,19 @@ public class LoginService {
 
     public static final String LOGIN = "login";
 
-    @EJB
-    UserController userController;
-
     SessionService sessionService = new SessionService();
+
+    //@EJB
+    //UserController userController;
 
     @Produces
     @LoggedInUser
-    public User getUser(){
-        Object object = sessionService.readFromSession(LOGIN);
-        String login = (String) object;
-        return userController.getUser(login);
+    //TODO switch to login string oly instead of user object (commented out, but not working)
+    public User getUser() {
+        //Object object = sessionService.readFromSession(LOGIN);
+        //String login = (String) object;
+        //return userController.getUser(login);
+        return (User) sessionService.readFromSession(LOGIN);
     }
 
     public void removeUser(){
@@ -29,6 +31,6 @@ public class LoginService {
     }
 
     public void setUser(User user) {
-        sessionService.attachToSession(LOGIN, user.getLogin());
+        sessionService.attachToSession(LOGIN, user/*.getLogin()*/);
     }
 }
