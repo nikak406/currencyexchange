@@ -11,27 +11,27 @@
             <h:form>
                 <h:panelGrid columns="3">
                     <h:outputText value="Email:" />
-                    <h:inputText value="#{currentUser.email}" id="email">
+                    <h:inputText value="#{editUser.email}" id="email">
                     </h:inputText>
                     <h:message for="email" style="color: red" />
                     <h:outputText value="Location:" />
-                    <h:inputText value="#{currentUser.location}" id="location"/>
+                    <h:inputText value="#{editUser.location}" id="location"/>
                     <h:message for="location" style="color: red" />
                     <h:outputText value="Room:" />
-                    <h:inputText value="#{currentUser.room}" id="room">
+                    <h:inputText value="#{editUser.room}" id="room">
                     </h:inputText>
                     <h:message for="room" style="color: red" />
                     <h:outputText value="Phone:" />
-                    <h:inputText value="#{currentUser.phoneNumber}" id="phoneNumber">
+                    <h:inputText value="#{editUser.phoneNumber}" id="phoneNumber">
                     </h:inputText>
                     <h:message for="phoneNumber" style="color: red" />
-                    <h:selectBooleanCheckbox value="#{currentUser.notifyViaMail}" id="notifyViaMail"/>
+                    <h:selectBooleanCheckbox value="#{editUser.notifyViaMail}" id="notifyViaMail"/>
                     <h:outputText value="Notify me via email" />
                 </h:panelGrid>
                 <h:commandButton id="saveChangesButton"
                                  action="home"
                                  value="Save Changes"
-                                 actionListener="#{userController.update(currentUser)}"/>
+                                 actionListener="#{userController.update(editUser)}"/>
             </h:form>
         </ui:define>
     </ui:composition>
