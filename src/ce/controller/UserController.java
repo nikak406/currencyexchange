@@ -22,7 +22,7 @@ public class UserController {
 	@EJB
 	FacesContextValue fcb;
 
-    @Inject @LoggenInUser
+    @Inject @LoggedInUser
     User loggedInUser;
 
 	public List<User> getUsers(){
@@ -49,7 +49,6 @@ public class UserController {
 		fc.addMessage(null, new FacesMessage("Successfully registered"));
 	}
 
-	//TODO add prefilled fields
 	public void update(EditUser editUser){
 		if (editUser.getLocation() != null) {
 			loggedInUser.setLocation(editUser.getLocation());

@@ -2,6 +2,7 @@ package ce.controller;
 
 import ce.model.User;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 
@@ -10,13 +11,17 @@ public class LoginService {
 
     public static final String LOGIN = "login";
 
+    @EJB
+    UserController userController;
+
     SessionService sessionService = new SessionService();
 
     @Produces
-    @LoggenInUser
+    @LoggedInUser
     public User getUser(){
         Object object = sessionService.readFromSession(LOGIN);
-        return (User) object;
+        String login = (String) object;
+        return userController.getUser(login);
     }
 
     public void removeUser(){
@@ -24,6 +29,6 @@ public class LoginService {
     }
 
     public void setUser(User user) {
-        sessionService.attachToSession(LOGIN, user);
+        sessionService.attachToSession(LOGIN, user.getLogin());
     }
 }

@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class OrderController {
 
-	@Inject @LoggenInUser
+	@Inject @LoggedInUser
     User loggedInUser;
 
     @EJB

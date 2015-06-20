@@ -30,7 +30,7 @@ public class TransactionController {
 	@EJB
 	OrderController orderController;
 
-    @Inject @LoggenInUser
+    @Inject @LoggedInUser
     User loggedInUser;
 
 	@EJB

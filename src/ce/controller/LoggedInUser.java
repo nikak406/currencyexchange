@@ -11,4 +11,4 @@ import static java.lang.annotation.ElementType.TYPE;
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)
 @Target({FIELD, TYPE, METHOD})
-public @interface LoggenInUser {}
+public @interface LoggedInUser {}

@@ -8,7 +8,7 @@ import javax.inject.Named;
 @Named
 public class LoggedInUser {
 
-    @Inject @ce.controller.LoggenInUser
+    @Inject @ce.controller.LoggedInUser
     private User user;
 
     public void setUser(User user){
