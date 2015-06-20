@@ -8,6 +8,7 @@ import ce.view.NewUser;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -19,9 +20,6 @@ public class UserController {
 	@EJB
 	UserDAO userDAO;
 
-	@EJB
-	FacesContextValue fcb;
-
     @Inject @LoggedInUser
     User loggedInUser;
 
@@ -29,6 +27,7 @@ public class UserController {
 		return userDAO.getUsers();
 	}
 
+	//todo stream
 	public User getUser(String login){
 		for(User user : getUsers()){
 			if (user.getLogin().equals(login)) return user;
@@ -45,26 +44,18 @@ public class UserController {
 		User user = new User(newUser.getLogin(), newUser.getPassword(), newUser.getName(),
 				newUser.getEmail(), newUser.getLocation(), newUser.getRoom(), newUser.getPhoneNumber());
 		userDAO.registerUser(user);
-		javax.faces.context.FacesContext fc = fcb.getInstance();
+		FacesContext fc = FacesContext.getCurrentInstance();
 		fc.addMessage(null, new FacesMessage("Successfully registered"));
 	}
 
 	public void update(EditUser editUser){
-		if (editUser.getLocation() != null) {
-			loggedInUser.setLocation(editUser.getLocation());
-		}
-		if (editUser.getRoom() != null) {
-			loggedInUser.setRoom(editUser.getRoom());
-		}
-		if (editUser.getEmail() != null) {
-			loggedInUser.setEmail(editUser.getEmail());
-		}
-		if (editUser.getPhoneNumber() != null) {
-			loggedInUser.setPhoneNumber(editUser.getPhoneNumber());
-		}
+		loggedInUser.setLocation(editUser.getLocation());
+		loggedInUser.setRoom(editUser.getRoom());
+		loggedInUser.setEmail(editUser.getEmail());
+		loggedInUser.setPhoneNumber(editUser.getPhoneNumber());
 		loggedInUser.setNotifyViaMail(editUser.getNotifyViaMail());
 		userDAO.updateUser(loggedInUser);
-		javax.faces.context.FacesContext fc = fcb.getInstance();
+		FacesContext fc = FacesContext.getCurrentInstance();
 		fc.addMessage(null, new FacesMessage("Successfully saved"));
 	}
 }

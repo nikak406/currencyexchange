@@ -35,4 +35,6 @@ public class OrderDAO {
 		TypedQuery<Order> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
+
+	//TODO acd getOrders by name
 }

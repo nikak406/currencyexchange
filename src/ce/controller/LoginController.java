@@ -23,9 +23,6 @@ public class LoginController implements Serializable{
 	@EJB
 	CookiesHandler cookiesHandler;
 
-	@EJB
-	FacesContextValue fcb;
-
     @EJB
     LoginService loginService;
 
@@ -36,7 +33,7 @@ public class LoginController implements Serializable{
     public boolean isLoginCorrect(Login login){
         String loginString = login.getLogin();
 		User user = userController.getUser(loginString);
-        FacesContext fc = fcb.getInstance();
+        FacesContext fc = FacesContext.getCurrentInstance();
         if (user == null) {
             fc.addMessage(loginField.getClientId(fc), new FacesMessage("Login is wrong"));
             return false;
@@ -47,7 +44,7 @@ public class LoginController implements Serializable{
     }
 
 	public void logout() {
-        javax.faces.context.FacesContext fc = fcb.getInstance();
+        FacesContext fc = FacesContext.getCurrentInstance();
 		loginService.removeUser();
         try {
 			cookiesHandler.dropCookies();
@@ -56,7 +53,7 @@ public class LoginController implements Serializable{
     }
 
 	public void login(Login login){
-        javax.faces.context.FacesContext fc = fcb.getInstance();
+        FacesContext fc = FacesContext.getCurrentInstance();
         if (isLoginCorrect(login)){
             String currentLogin = login.getLogin();
 			User currentUser = userController.getUser(currentLogin);

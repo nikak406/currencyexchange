@@ -1,8 +1,6 @@
 package ce.controller.auth;
 
-import ce.controller.LoginController;
 import ce.controller.LoginService;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;

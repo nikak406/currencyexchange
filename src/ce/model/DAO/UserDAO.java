@@ -35,4 +35,6 @@ public class UserDAO {
         TypedQuery<User> allQuery = em.createQuery(all);
         return allQuery.getResultList();
     }
+
+    //todo get user by login
 }

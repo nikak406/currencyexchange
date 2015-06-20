@@ -48,7 +48,8 @@ public class TransactionController {
 		List<Transaction> allTransactions = getTransactions();
 		return allTransactions
 				.stream()
-				.filter(transaction -> transaction.getCustomer().equals(loggedInUser)
+				.filter(transaction ->
+						transaction.getCustomer().equals(loggedInUser)
 						|| transaction.getOrder().getDealer().equals(loggedInUser))
 				.collect(Collectors.toList());
 	}
@@ -59,7 +60,6 @@ public class TransactionController {
 		int maxAmount = order.getMaxAmount();
 		int amount = intBean.getValue();
 		if (maxAmount < amount){
-			intBean.setValue(maxAmount);
 			amount = maxAmount;
 		}
 		order.setMaxAmount(maxAmount - amount);

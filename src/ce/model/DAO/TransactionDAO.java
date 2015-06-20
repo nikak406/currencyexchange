@@ -35,4 +35,6 @@ public class TransactionDAO {
 		TypedQuery<Transaction> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
+
+	//todo get transactions by name
 }
