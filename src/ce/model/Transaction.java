@@ -10,7 +10,7 @@ public class Transaction implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int number;
-
+    //TODO use as ID
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 
