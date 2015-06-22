@@ -36,5 +36,7 @@ public class UserDAO {
         return allQuery.getResultList();
     }
 
-    //todo get user by login
+    public User getUser(String login){
+        return em.find(User.class, login);
+    }
 }

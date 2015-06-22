@@ -27,13 +27,9 @@ public class UserController {
 		return userDAO.getUsers();
 	}
 
-	//todo stream
 	public User getUser(String login){
-		for(User user : getUsers()){
-			if (user.getLogin().equals(login)) return user;
-		}
-		return null;
-	}
+		return userDAO.getUser(login);
+    }
 
 	public boolean containsUser(String login){
 		return (getUser(login) != null);
