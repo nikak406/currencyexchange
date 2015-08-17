@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Named
 @Stateless
@@ -33,20 +32,15 @@ public class OrderController {
         orderDAO.saveOrder(order);
     }
 
+//TODO move sorting to Criteria API
     public List<Order> getOrders(){
         return orderDAO
-				.getOrders()
-				.stream()
-				.sorted((order1, order2) -> order1.getDate().compareTo(order2.getDate()))
-				.collect(Collectors.toList());
+				.getOrders();
     }
 //todo cc interface
 	public List<Order> getMyOrders(){
-		List<Order> allOrders = getOrders();
-		return allOrders
-				.stream()
-				.filter(order -> order.getDealer().equals(loggedInUser))
-				.collect(Collectors.toList());
+		return orderDAO.
+                getOrders(loggedInUser);
 	}
 
 	public void updateOrder(Order order){

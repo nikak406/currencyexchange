@@ -1,6 +1,7 @@
 package ce.model.DAO;
 
 import ce.model.Transaction;
+import ce.model.User;
 
 import javax.ejb.Singleton;
 import javax.enterprise.context.ApplicationScoped;
@@ -10,6 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.Date;
 import java.util.List;
 
 @Singleton
@@ -28,13 +30,25 @@ public class TransactionDAO {
 	}
 
 	public List<Transaction> getTransactions(){
-		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Transaction> cq = cb.createQuery(Transaction.class);
-		Root<Transaction> rootEntry = cq.from(Transaction.class);
-		CriteriaQuery<Transaction> all = cq.select(rootEntry);
+		CriteriaBuilder builder = em.getCriteriaBuilder();
+		CriteriaQuery<Transaction> query = builder.createQuery(Transaction.class);
+		Root<Transaction> root = query.from(Transaction.class);
+		CriteriaQuery<Transaction> all = query.select(root);
+        all.orderBy(builder.desc(root.get("date").as(Date.class)));
 		TypedQuery<Transaction> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
 
-	//todo get transactions by name
+    //TODO have to fix
+    public List<Transaction> getTransactions(User user){
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Transaction> query = builder.createQuery(Transaction.class);
+        Root<Transaction> root = query.from(Transaction.class);
+        CriteriaQuery<Transaction> selected = query
+                .select(root)
+                .where(builder.equal(root.get("customer"), user));
+        selected.orderBy(builder.desc(root.get("date").as(Date.class)));
+        TypedQuery<Transaction> selectedQuery = em.createQuery(selected);
+        return selectedQuery.getResultList();
+    }
 }

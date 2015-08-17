@@ -37,11 +37,7 @@ public class TransactionController {
     NewTransaction newTransaction;
 
 	private List<Transaction> getTransactions(){
-		return transactionDAO
-				.getTransactions()
-				.stream()
-				.sorted((transaction1, transaction2) -> transaction1.getDate().compareTo(transaction2.getDate()))
-				.collect(Collectors.toList());
+		return transactionDAO.getTransactions();
 	}
 
 	public List<Transaction> getMyTransactions(){
