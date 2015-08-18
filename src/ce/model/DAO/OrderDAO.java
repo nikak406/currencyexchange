@@ -8,9 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,19 +31,25 @@ public class OrderDAO {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Order> query = builder.createQuery(Order.class);
 		Root<Order> root = query.from(Order.class);
-		CriteriaQuery<Order> all = query.select(root);
-        all.orderBy(builder.desc(root.get("date").as(Date.class)));
+		Path<Date> date = root.get("date");
+		CriteriaQuery<Order> all = query
+				.select(root)
+				.orderBy(builder.desc(date));
 		TypedQuery<Order> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
 
-	//TODO don't repeat yourself
     public List<Order> getOrders(User user){
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Order> query = builder.createQuery(Order.class);
         Root<Order> root = query.from(Order.class);
-        CriteriaQuery<Order> selected = query.select(root).where(builder.equal(root.get("dealer"), user));
-        selected.orderBy(builder.desc(root.get("date").as(Date.class)));
+		Path<Date> date = root.get("date");
+		Path<User> dealer = root.get("dealer");
+		Predicate condition = builder.equal(dealer, user);
+        CriteriaQuery<Order> selected = query
+				.select(root)
+				.where(condition)
+				.orderBy(builder.desc(date));
         TypedQuery<Order> selectedQuery = em.createQuery(selected);
         return selectedQuery.getResultList();
     }

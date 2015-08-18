@@ -32,7 +32,6 @@ public class CookiesHandler {
 		Cookie[] cookies = request.getCookies();
 		String login = null;
 		String password = null;
-		//todo stream
 		if (cookies != null) for(Cookie cookie: cookies){
 			if (cookie.getName().equals("login")){
 				login = cookie.getValue();
@@ -56,7 +55,6 @@ public class CookiesHandler {
 		HttpServletResponse response = (HttpServletResponse) fc.getExternalContext().getResponse();
 		HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
 		Cookie[] cookies = request.getCookies();
-		//todo stream
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("login")) {
 				cookie.setMaxAge(ZERO);

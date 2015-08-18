@@ -1,5 +1,6 @@
 package ce.model.DAO;
 
+import ce.model.Order;
 import ce.model.Transaction;
 import ce.model.User;
 
@@ -8,9 +9,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,21 +32,29 @@ public class TransactionDAO {
 		CriteriaBuilder builder = em.getCriteriaBuilder();
 		CriteriaQuery<Transaction> query = builder.createQuery(Transaction.class);
 		Root<Transaction> root = query.from(Transaction.class);
-		CriteriaQuery<Transaction> all = query.select(root);
-        all.orderBy(builder.desc(root.get("date").as(Date.class)));
+		Path<Date> date = root.get("date");
+		CriteriaQuery<Transaction> all = query
+				.select(root)
+				.orderBy(builder.desc(date));
 		TypedQuery<Transaction> allQuery = em.createQuery(all);
 		return allQuery.getResultList();
 	}
 
-    //TODO have to fix
     public List<Transaction> getTransactions(User user){
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Transaction> query = builder.createQuery(Transaction.class);
         Root<Transaction> root = query.from(Transaction.class);
-        CriteriaQuery<Transaction> selected = query
+		Path<User> customer = root.get("customer");
+		Predicate customerCondition = builder.equal(customer, user);
+		Path<Order> order = root.get("order");
+		Path<User> dealer = order.get("dealer");
+		Predicate dealerCondition = builder.equal(dealer, user);
+		Predicate anyCondition = builder.or(dealerCondition, customerCondition);
+		Path<Date> date = root.get("date");
+		CriteriaQuery<Transaction> selected = query
                 .select(root)
-                .where(builder.equal(root.get("customer"), user));
-        selected.orderBy(builder.desc(root.get("date").as(Date.class)));
+				.where(anyCondition)
+				.orderBy(builder.desc(date));
         TypedQuery<Transaction> selectedQuery = em.createQuery(selected);
         return selectedQuery.getResultList();
     }
