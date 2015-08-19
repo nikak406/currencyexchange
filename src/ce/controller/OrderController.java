@@ -32,15 +32,12 @@ public class OrderController {
         orderDAO.saveOrder(order);
     }
 
-//TODO move sorting to Criteria API
     public List<Order> getOrders(){
-        return orderDAO
-				.getOrders();
+        return orderDAO.getOrders();
     }
 //todo cc interface
 	public List<Order> getMyOrders(){
-		return orderDAO.
-                getOrders(loggedInUser);
+		return orderDAO.getOrders(loggedInUser);
 	}
 
 	public void updateOrder(Order order){
