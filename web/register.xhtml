@@ -29,7 +29,10 @@
         </h:inputText>
         <h:message for="email" style="color: red" />
         <h:outputText value="Location:" />
-        <h:inputText value="#{newUser.location}" id="location"/>
+        <h:selectOneMenu id="location" value="#{newUser.location}">
+            <f:selectItems value="#{locations.locations}" var="location"
+                           itemValue="#{location}" itemLabel="#{location}"/>
+        </h:selectOneMenu>
         <h:message for="location" style="color: red" />
         <h:outputText value="Room:" />
         <h:inputText value="#{newUser.room}" id="room">

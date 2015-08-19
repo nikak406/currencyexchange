@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-//TODO add select instead of inputText for location
+//TODO move location and currencies to external file
 //TODO add regex pattern for phone and email and room
 public class NewUser extends User {
 
