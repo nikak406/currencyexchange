@@ -2,7 +2,6 @@ package ce.controller;
 
 import ce.model.User;
 
-import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 
@@ -18,7 +17,7 @@ public class LoginService {
 
     @Produces
     @LoggedInUser
-    //TODO switch to login string oly instead of user object (commented out, but not working)
+    //TODO BUG switch to login string oly instead of user object (commented out, but not working)
     public User getUser() {
         //Object object = sessionService.readFromSession(LOGIN);
         //String login = (String) object;

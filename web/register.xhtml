@@ -24,9 +24,7 @@
         <h:inputText value="#{newUser.name}" id="name"/>
         <h:message for="name" style="color: red" />
         <h:outputText value="Email:" />
-        <h:inputText value="#{newUser.email}" id="email">
-            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
-        </h:inputText>
+        <h:inputText value="#{newUser.email}" id="email"/>
         <h:message for="email" style="color: red" />
         <h:outputText value="Location:" />
         <h:selectOneMenu id="location" value="#{newUser.location}">
@@ -35,13 +33,10 @@
         </h:selectOneMenu>
         <h:message for="location" style="color: red" />
         <h:outputText value="Room:" />
-        <h:inputText value="#{newUser.room}" id="room">
-            <f:validateRegex pattern="^([1-9][0-9]*)$"/>
-        </h:inputText>
+        <h:inputText value="#{newUser.room}" id="room"/>
         <h:message for="room" style="color: red" />
         <h:outputText value="Phone:" />
-        <h:inputText value="#{newUser.phoneNumber}" id="phoneNumber">
-        </h:inputText>
+        <h:inputText value="#{newUser.phoneNumber}" id="phoneNumber"/>
         <h:message for="phoneNumber" style="color: red" />
         <h:commandButton id="registerButton"
                          action="login"

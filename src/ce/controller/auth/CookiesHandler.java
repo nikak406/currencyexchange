@@ -8,7 +8,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//TODO testing required, probably functional is doing wrong
+//TODO BUG testing required, probably functional is doing wrong
 @Stateless
 public class CookiesHandler {
 

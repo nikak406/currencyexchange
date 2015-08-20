@@ -8,7 +8,7 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 
-//TODO user is not being logged out really after logout press
+//TODO BUG user is not being logged out really after logout press
 
 @Qualifier
 @Retention(RetentionPolicy.RUNTIME)

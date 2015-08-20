@@ -1,5 +1,9 @@
 package ce.model;
 
+import ce.model.validation.Email;
+import ce.model.validation.NaturalNumber;
+import ce.model.validation.PhoneNumber;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -12,16 +16,21 @@ public class User implements Serializable {
     @Id
     protected String login;
 
+	@NotNull
 	protected String password;
 
 	protected String name;
 
+	@Email
 	protected String email;
 
+	@NotNull
 	protected String location;
 
+	@NaturalNumber
 	protected String room;
 
+	@PhoneNumber
 	protected String phoneNumber;
 
 	protected boolean notifyViaMail = false;

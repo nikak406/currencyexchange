@@ -35,7 +35,7 @@ public class OrderController {
     public List<Order> getOrders(){
         return orderDAO.getOrders();
     }
-//todo cc interface
+
 	public List<Order> getMyOrders(){
 		return orderDAO.getOrders(loggedInUser);
 	}

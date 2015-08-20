@@ -1,6 +1,7 @@
 package ce.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -23,8 +24,10 @@ public class Order implements Serializable {
 	//TODO map using emumerated String
     private OrderType orderType;
 
+	@Min(1)
 	private int maxAmount;
 
+	@Min(0)
 	private double rate;
 
 	private boolean closed = false;
