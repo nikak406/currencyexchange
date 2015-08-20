@@ -4,43 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ccc="http://java.sun.com/jsf/composite/interface">
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:dataTable value="#{transactionController.myTransactions}" var="transaction">
-                    <h:column>
-                        <f:facet name="header">Currency</f:facet>
-                        #{transaction.order.currency}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Amount</f:facet>
-                        #{transaction.amount}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Type</f:facet>
-                        #{transaction.order.orderType}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Dealer</f:facet>
-                        #{transaction.order.dealer.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Customer</f:facet>
-                        #{transaction.customer.name}
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Date</f:facet>
-                        <h:outputText value="#{transaction.date}">
-                            <f:convertDateTime pattern="HH:mm dd.MM.yyyy" />
-                        </h:outputText>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">Rate</f:facet>
-                        #{transaction.order.rate}
-                    </h:column>
-                </h:dataTable>
+                <ccc:transactionsList
+                        transactions="#{transactionController.myTransactions}"/>
             </h:form>
         </ui:define>
     </ui:composition>
