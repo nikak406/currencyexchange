@@ -3,6 +3,7 @@ package ce.model;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import java.io.Serializable;
+import java.util.Currency;
 import java.util.Date;
 
 @Entity(name="Orders")
@@ -18,10 +19,9 @@ public class Order implements Serializable {
 	@ManyToOne
 	private User dealer;
 
-	//TODO change String to Currency
-    private String currency;
+	@Convert(converter = CurrencyConverter.class)
+    private Currency currency;
 
-	//TODO map using emumerated String
     private OrderType orderType;
 
 	@Min(1)
@@ -70,11 +70,11 @@ public class Order implements Serializable {
     }
 
 	public String getCurrency() {
-		return currency;
+		return currency.getCurrencyCode();
 	}
 
 	public void setCurrency(String currency) {
-		this.currency = currency;
+		this.currency = Currency.getInstance(currency);
 	}
 
 	public OrderType getOrderType() {
