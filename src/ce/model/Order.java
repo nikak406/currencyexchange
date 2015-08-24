@@ -20,7 +20,7 @@ public class Order implements Serializable {
 
     private String currency;
 
-	//TODO map using enumerated String
+    @Enumerated(EnumType.STRING)
     private OrderType orderType;
 
 	@Min(1)
