@@ -18,10 +18,9 @@ public class Order implements Serializable {
 	@ManyToOne
 	private User dealer;
 
-	//TODO change String to Currency
     private String currency;
 
-	//TODO map using emumerated String
+	//TODO map using enumerated String
     private OrderType orderType;
 
 	@Min(1)

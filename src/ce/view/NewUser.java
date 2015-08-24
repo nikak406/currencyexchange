@@ -9,7 +9,7 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-//TODO move location and currencies to external file
+//TODO move location to external file
 public class NewUser extends User {
 
     public NewUser() {}
