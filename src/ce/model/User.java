@@ -12,11 +12,11 @@ import java.io.Serializable;
 @Entity
 public class User implements Serializable {
 
-	@NotNull
+	@NotNull (message = "Invalid login")
     @Id
     protected String login;
 
-	@NotNull
+	@NotNull (message = "Invalid password")
 	protected String password;
 
 	protected String name;
@@ -24,7 +24,7 @@ public class User implements Serializable {
 	@Email
 	protected String email;
 
-	@NotNull
+	@NotNull (message = "Invalid location")
 	protected String location;
 
 	@NaturalNumber

@@ -8,7 +8,8 @@ import java.lang.annotation.*;
 @Pattern.List({
 		@Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
 				+"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*"
-				+"@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+				+"@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+				message="Invalid email")
 })
 @Constraint(validatedBy = {})
 @Documented
@@ -20,7 +21,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Email {
 
-	String message() default "Bad Email";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 

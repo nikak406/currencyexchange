@@ -6,7 +6,8 @@ import javax.validation.constraints.Pattern;
 import java.lang.annotation.*;
 
 @Pattern.List({
-		@Pattern(regexp = "[1-9]\\d*")
+		@Pattern(regexp = "[1-9]\\d*",
+		message = "Invalid number")
 })
 @Constraint(validatedBy = {})
 @Documented
@@ -18,7 +19,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface NaturalNumber {
 
-	String message() default "Bad number";
+	String message() default "";
 
 	Class<?>[] groups() default {};
 

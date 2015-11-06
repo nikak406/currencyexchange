@@ -9,7 +9,6 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-//TODO move location to external file
 public class NewUser extends User {
 
     public NewUser() {}

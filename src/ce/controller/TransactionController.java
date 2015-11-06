@@ -67,6 +67,7 @@ public class TransactionController {
 		transaction.setDate(now);
 		transaction.setOrder(order);
 		transactionDAO.registerTransaction(transaction);
+		//MailSender.sendMail(transaction);
 	}
 
 	public void addTransactionOrder(Order order){

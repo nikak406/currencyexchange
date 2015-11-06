@@ -109,4 +109,9 @@ public class Order implements Serializable {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
+
+	@Override
+	public String toString(){
+		return orderType.getLabel() + ' ' + getMaxAmount() + ' ' + getCurrency();
+	}
 }
