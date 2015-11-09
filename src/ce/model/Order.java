@@ -71,6 +71,7 @@ public class Order implements Serializable {
     }
 
 	public String getCurrency() {
+		if (currency == null) return null;
 		return currency.getCurrencyCode();
 	}
 

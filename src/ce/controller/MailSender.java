@@ -1,6 +1,5 @@
 package ce.controller;
 
-import ce.model.Order;
 import ce.model.Transaction;
 import ce.model.User;
 
@@ -26,8 +25,7 @@ public class MailSender {
     }
 
     static void sendMail(Transaction transaction){
-        Order order = transaction.getOrder();
-        User dealer = order.getDealer();
+        User dealer = transaction.getOrder().getDealer();
         if (dealer.getNotifyViaMail()){
             new MailSender(transaction).sendMail();
         }

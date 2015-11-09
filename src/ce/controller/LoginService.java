@@ -2,6 +2,7 @@ package ce.controller;
 
 import ce.model.User;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Produces;
 
@@ -12,8 +13,8 @@ public class LoginService {
 
     SessionService sessionService = new SessionService();
 
-    //@EJB
-    //UserController userController;
+    @EJB
+    UserController userController;
 
     @Produces
     @LoggedInUser
