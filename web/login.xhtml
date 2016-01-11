@@ -12,25 +12,38 @@
     <h:outputStylesheet library="css" name="styles.css"/>
 </h:head>
 <h:body>
-<h:form>
-    <h:messages style="color: green" globalOnly="true"/>
-    <h:panelGrid columns="3">
-        <h:outputText value="Login:" />
-        <h:inputText value="#{login.login}" id="login" binding="#{loginController.loginField}"/>
-        <h:message for="login" style="color: red" />
-        <h:outputText value="Password:" />
-        <h:inputSecret value="#{login.password}" id="password" binding="#{loginController.passwordField}"/>
-        <h:message for="password" style="color: red" />
-        <h:commandButton id="loginButton"
-                         action="login"
-                         value="Submit"
-                         actionListener="#{loginController.login(login)}"/>
-        <h:panelGroup>
-            <h:selectBooleanCheckbox value="#{login.remember}"/>
-            <h:outputLabel value="Remember"/>
-        </h:panelGroup>
-    </h:panelGrid>
-    <h:outputLink value="/register.xhtml">Register</h:outputLink>
-</h:form>
+    <div class="container">
+        <div class="header">
+            <h1 class="header-heading">Currency Exchange</h1>
+        </div>
+        <div class="content">
+            <h:form>
+                <h:messages style="color: green" globalOnly="true"/>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Login:" />
+                    <h:inputText value="#{login.login}" id="login" binding="#{loginController.loginField}"/>
+                    <h:message for="login" style="color: red" />
+                    <h:outputText value="Password:" />
+                    <h:inputSecret value="#{login.password}" id="password" binding="#{loginController.passwordField}"/>
+                    <h:message for="password" style="color: red" />
+                    <h:commandButton class="btn"
+                                    id="loginButton"
+                                     action="login"
+                                     value="Submit"
+                                     actionListener="#{loginController.login(login)}"/>
+                    <h:panelGroup>
+                        <h:selectBooleanCheckbox value="#{login.remember}"/>
+                        <h:outputLabel value="Remember"/>
+                    </h:panelGroup>
+                </h:panelGrid>
+                <h:outputLink value="/register.xhtml">Register</h:outputLink>
+            </h:form>
+        </div>
+        <div id="bottom" class="footer">
+            <ui:insert name="bottom">
+                © Eugene Savochkin, 2015
+            </ui:insert>
+        </div>
+    </div>
 </h:body>
 </html>

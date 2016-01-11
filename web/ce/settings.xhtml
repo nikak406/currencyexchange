@@ -9,7 +9,7 @@
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:panelGrid columns="3">
+                <h:panelGrid columns="3" class="table table-striped">
                     <h:outputText value="Email:" />
                     <h:inputText value="#{editUser.email}" id="email">
                     </h:inputText>
@@ -31,7 +31,8 @@
                     <h:selectBooleanCheckbox value="#{editUser.notifyViaMail}" id="notifyViaMail"/>
                     <h:outputText value="Notify me via email" />
                 </h:panelGrid>
-                <h:commandButton id="saveChangesButton"
+                <h:commandButton  class="btn"
+                                  id="saveChangesButton"
                                  action="home"
                                  value="Save Changes"
                                  actionListener="#{userController.update(editUser)}"/>

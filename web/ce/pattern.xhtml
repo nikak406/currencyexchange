@@ -10,37 +10,40 @@
     <title>Currency Exchange</title>
 </h:head>
 <h:body>
-    <div id="loggedIn">
-        <ui:insert name="loggedIn">
+    <div class="container">
+        <div class="header">
+            <h1 class="header-heading">Currency Exchange</h1>
+        </div>
+        <div class="nav-bar">
+            <ui:insert name="linksPanel">
+                    <ul class="nav">
+                        <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
+                        <li><h:outputLink value="allOrders.xhtml">All orders</h:outputLink></li>
+                        <li><h:outputLink value="myOrders.xhtml">My orders</h:outputLink></li>
+                        <li><h:outputLink value="transactions.xhtml">My Transactions</h:outputLink></li>
+                        <li><h:outputLink value="settings.xhtml">Settings</h:outputLink></li>
+                    </ul>
+            </ui:insert>
+        </div>
+        <div class="content" id="content" align="center">
+            <ui:insert name="content">
+                <h:outputText value="inside Pattern"/>
+            </ui:insert>
+        </div>
+        <div id="loggedIn" class="login">
+            <ui:insert name="loggedIn">
                 <h:form>
-                <h:outputText value="#{loggedInUser.login} (" />
-                <h:commandLink value="logout" action="#" actionListener="#{loginController.logout()}"/>
-                <h:outputText value=")"/>
-                <hr/>
+                    <h:outputText value="#{loggedInUser.login} (" />
+                    <h:commandLink value="logout" action="#" actionListener="#{loginController.logout()}"/>
+                    <h:outputText value=")"/>
                 </h:form>
-        </ui:insert>
-    </div>
-    <div id="linksPanel">
-        <ui:insert name="linksPanel">
-                <ul>
-                    <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
-                    <li><h:outputLink value="allOrders.xhtml">All orders</h:outputLink></li>
-                    <li><h:outputLink value="myOrders.xhtml">My orders</h:outputLink></li>
-                    <li><h:outputLink value="transactions.xhtml">My Transactions</h:outputLink></li>
-                    <li><h:outputLink value="settings.xhtml">Settings</h:outputLink></li>
-                </ul>
-            <hr/>
-        </ui:insert>
-    </div>
-    <div id="content" align="center">
-        <ui:insert name="content">
-            <h:outputText value="inside Pattern"/>
-        </ui:insert>
-    </div>
-    <div id="bottom">
-        <ui:insert name="bottom">
-            © Eugene Savochkin, 2015
-        </ui:insert>
+            </ui:insert>
+        </div>
+        <div id="bottom" class="footer">
+            <ui:insert name="bottom">
+                © Eugene Savochkin, 2015
+            </ui:insert>
+        </div>
     </div>
 </h:body>
 </html>

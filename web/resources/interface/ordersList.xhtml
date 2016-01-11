@@ -12,7 +12,7 @@
 </cc:interface>
 
 <cc:implementation>
-        <h:dataTable value="#{cc.attrs.orders}" var="order">
+        <h:dataTable value="#{cc.attrs.orders}" var="order" class="table table-striped">
             <h:column>
                 <f:facet name="header">Currency</f:facet>
                 #{order.currency}
@@ -49,7 +49,8 @@
             </h:column>
             <h:column>
                 <f:facet name="header">Add Transaction</f:facet>
-                <h:commandButton id="addTransactionButton"
+                <h:commandButton  class="btn"
+                                  id="addTransactionButton"
                                  action="addTransaction"
                                  value="+"
                                  actionListener="#{transactionController.addTransactionOrder(order)}"/>

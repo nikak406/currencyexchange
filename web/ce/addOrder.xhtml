@@ -9,7 +9,7 @@
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:panelGrid columns="3">
+                <h:panelGrid columns="3" class="table table-striped">
                     <h:outputText value="Currency:" />
                     <h:selectOneMenu id="currency" value="#{newOrder.currency}">
                         <f:selectItems value="#{currencyValues.values}" var="currency"
@@ -28,7 +28,8 @@
                                        itemValue="#{orderType}" itemLabel="#{orderType.label}"/>
                     </h:selectOneMenu>
                     <h:message for="exchangeOrderType" style="color: red" />
-                    <h:commandButton id="placeOrderButton"
+                    <h:commandButton class="btn"
+                                     id="placeOrderButton"
                                      action="myOrders"
                                      value="Place Order"
                                      actionListener="#{orderController.addOrder(newOrder)}"/>

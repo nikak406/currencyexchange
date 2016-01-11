@@ -1,52 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
   <data-source name="MySQL - ce@localhost" uuid="0e35f2d9-67d5-443b-a773-a9a95ef19923">
-    <database-info product="MySQL" version="5.5.43-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+    <database-info product="MySQL" version="5.7.10-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
-    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="ce"/>
-    <table name="EXCHANGEORDER" schema="" catalog="ce" type="TABLE">
-      <column name="NUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="CLOSED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
-      <column name="CURRENCY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
-      <column name="EXCHANGEORDERTYPE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="MAXAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="RATE" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
-      <column name="DEALER_LOGIN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="NUMBER"/>
-      <foreign-key name="FK_EXCHANGEORDER_DEALER_LOGIN" columns="DEALER_LOGIN" ref-table="USER" ref-schema="" ref-catalog="ce" ref-columns="LOGIN" update-rule="3" delete-rule="3" deferrability="2"/>
-      <index name="FK_EXCHANGEORDER_DEALER_LOGIN" unique="false" columns="DEALER_LOGIN"/>
-    </table>
-    <table name="ORDERS" schema="" catalog="ce" type="TABLE">
+    <table name="orders" schema="" catalog="ce" type="TABLE">
       <column name="NUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="CLOSED" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6" def="MA=="/>
       <column name="CURRENCY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="MAXAMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="ORDERTYPE" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="ORDERTYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="RATE" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
       <column name="DEALER_LOGIN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="NUMBER"/>
-      <foreign-key name="FK_ORDERS_DEALER_LOGIN" columns="DEALER_LOGIN" ref-table="USER" ref-schema="" ref-catalog="ce" ref-columns="LOGIN" update-rule="3" delete-rule="3" deferrability="2"/>
-      <exported-key name="FK_TRANSACTION_ORDER_NUMBER" table="TRANSACTION" schema="" catalog="ce" columns="ORDER_NUMBER"/>
+      <foreign-key name="FK_ORDERS_DEALER_LOGIN" columns="DEALER_LOGIN" ref-table="user" ref-schema="" ref-catalog="ce" ref-columns="LOGIN" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_TRANSACTION_ORDER_NUMBER" table="transaction" schema="" catalog="ce" columns="ORDER_NUMBER"/>
       <index name="FK_ORDERS_DEALER_LOGIN" unique="false" columns="DEALER_LOGIN"/>
     </table>
-    <table name="TRANSACTION" schema="" catalog="ce" type="TABLE">
+    <table name="transaction" schema="" catalog="ce" type="TABLE">
       <column name="NUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="AMOUNT" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="CUSTOMER_LOGIN" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="ORDER_NUMBER" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="NUMBER"/>
-      <foreign-key name="FK_TRANSACTION_CUSTOMER_LOGIN" columns="CUSTOMER_LOGIN" ref-table="USER" ref-schema="" ref-catalog="ce" ref-columns="LOGIN" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="FK_TRANSACTION_ORDER_NUMBER" columns="ORDER_NUMBER" ref-table="ORDERS" ref-schema="" ref-catalog="ce" ref-columns="NUMBER" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TRANSACTION_CUSTOMER_LOGIN" columns="CUSTOMER_LOGIN" ref-table="user" ref-schema="" ref-catalog="ce" ref-columns="LOGIN" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_TRANSACTION_ORDER_NUMBER" columns="ORDER_NUMBER" ref-table="orders" ref-schema="" ref-catalog="ce" ref-columns="NUMBER" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_TRANSACTION_CUSTOMER_LOGIN" unique="false" columns="CUSTOMER_LOGIN"/>
       <index name="FK_TRANSACTION_ORDER_NUMBER" unique="false" columns="ORDER_NUMBER"/>
     </table>
-    <table name="USER" schema="" catalog="ce" type="TABLE">
+    <table name="user" schema="" catalog="ce" type="TABLE">
       <column name="LOGIN" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="LOCATION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -56,9 +43,8 @@
       <column name="PHONENUMBER" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="ROOM" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="LOGIN"/>
-      <exported-key name="FK_EXCHANGEORDER_DEALER_LOGIN" table="EXCHANGEORDER" schema="" catalog="ce" columns="DEALER_LOGIN"/>
-      <exported-key name="FK_ORDERS_DEALER_LOGIN" table="ORDERS" schema="" catalog="ce" columns="DEALER_LOGIN"/>
-      <exported-key name="FK_TRANSACTION_CUSTOMER_LOGIN" table="TRANSACTION" schema="" catalog="ce" columns="CUSTOMER_LOGIN"/>
+      <exported-key name="FK_ORDERS_DEALER_LOGIN" table="orders" schema="" catalog="ce" columns="DEALER_LOGIN"/>
+      <exported-key name="FK_TRANSACTION_CUSTOMER_LOGIN" table="transaction" schema="" catalog="ce" columns="CUSTOMER_LOGIN"/>
     </table>
   </data-source>
 </component>

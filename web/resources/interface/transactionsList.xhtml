@@ -12,7 +12,7 @@
 </cc:interface>
 
 <cc:implementation>
-    <h:dataTable value="#{cc.attrs.transactions}" var="transaction">
+    <h:dataTable value="#{cc.attrs.transactions}" var="transaction" class="table table-striped">
         <h:column>
             <f:facet name="header">Currency</f:facet>
             #{transaction.order.currency}

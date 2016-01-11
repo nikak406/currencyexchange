@@ -16,6 +16,7 @@
       <root url="jar://$PROJECT_DIR$/lib/javax.faces-api-2.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.resource.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax-inject.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mail.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
