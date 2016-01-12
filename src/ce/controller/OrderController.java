@@ -20,9 +20,6 @@ public class OrderController {
     User loggedInUser;
 
     @EJB
-    UserController userController;
-
-    @EJB
 	OrderDAO orderDAO;
 
     public void addOrder(NewOrder newOrder) {

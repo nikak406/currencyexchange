@@ -20,9 +20,6 @@ public class UserController {
 	@EJB
 	UserDAO userDAO;
 
-    @Inject @LoggedInUser
-    User loggedInUser;
-
 	public List<User> getUsers(){
 		return userDAO.getUsers();
 	}
@@ -44,14 +41,7 @@ public class UserController {
 		fc.addMessage(null, new FacesMessage("Successfully registered"));
 	}
 
-	public void update(EditUser editUser){
-		loggedInUser.setLocation(editUser.getLocation());
-		loggedInUser.setRoom(editUser.getRoom());
-		loggedInUser.setEmail(editUser.getEmail());
-		loggedInUser.setPhoneNumber(editUser.getPhoneNumber());
-		loggedInUser.setNotifyViaMail(editUser.getNotifyViaMail());
-		userDAO.updateUser(loggedInUser);
-		FacesContext fc = FacesContext.getCurrentInstance();
-		fc.addMessage(null, new FacesMessage("Successfully saved"));
+	public void update(User user) {
+		userDAO.updateUser(user);
 	}
 }

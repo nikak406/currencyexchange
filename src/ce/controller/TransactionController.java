@@ -19,12 +19,6 @@ import java.util.stream.Collectors;
 public class TransactionController {
 
 	@EJB
-	LoginController loginController;
-
-	@EJB
-	UserController userController;
-
-	@EJB
 	TransactionDAO transactionDAO;
 
 	@EJB

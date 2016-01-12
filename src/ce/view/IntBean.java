@@ -4,7 +4,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.validation.constraints.Min;
 
-//TODO JS money calculation add
 @Named
 @RequestScoped
 public class IntBean{
