@@ -16,27 +16,28 @@
         </div>
         <div class="nav-bar">
             <ui:insert name="linksPanel">
+                <h:form>
                     <ul class="nav">
-                        <li><h:outputLink value="home.xhtml">Home</h:outputLink></li>
                         <li><h:outputLink value="allOrders.xhtml">All orders</h:outputLink></li>
                         <li><h:outputLink value="myOrders.xhtml">My orders</h:outputLink></li>
                         <li><h:outputLink value="transactions.xhtml">My Transactions</h:outputLink></li>
-                        <li><h:outputLink value="settings.xhtml">Settings</h:outputLink></li>
+                        <li class="alignright">
+                            <h:commandLink action="#" actionListener="#{loginController.logout()}">
+                                <img src="logout.png" alt="Logout" style="width:24px;height: 24px; border: 4px;"/>
+                            </h:commandLink>
+                        </li>
+                        <li class="alignright">
+                            <h:outputLink value="settings.xhtml">
+                                <img src="settings.png" alt="Settings" style="width:24px;height: 24px; border: 4px;"/>
+                            </h:outputLink>
+                        </li>
                     </ul>
+                </h:form>
             </ui:insert>
         </div>
         <div class="content" id="content" align="center">
             <ui:insert name="content">
                 <h:outputText value="inside Pattern"/>
-            </ui:insert>
-        </div>
-        <div id="loggedIn" class="login">
-            <ui:insert name="loggedIn">
-                <h:form>
-                    <h:outputText value="#{loggedInUser.login} (" />
-                    <h:commandLink value="logout" action="#" actionListener="#{loginController.logout()}"/>
-                    <h:outputText value=")"/>
-                </h:form>
             </ui:insert>
         </div>
         <div id="bottom" class="footer">

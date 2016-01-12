@@ -63,6 +63,10 @@ th, td
     border-bottom: 1px solid #ddd;
 }
 
+input[type="text"], input[type="password"], select {
+    width:100%
+}
+
 a:link { color: royalblue; }
 a:visited { color: purple; }
 a:focus { color: black; }
@@ -142,20 +146,14 @@ Nav
 
 .nav a:focus
 {
-    color: black;
-    background-color: white;
-}
-
-.nav a:hover
-{
     color: white;
-    background-color: green;
+    background-color: black;
 }
 
 .nav a:active
 {
     color: white;
-    background-color: red;
+    background-color: black;
 }
 
 /* -----------------------
@@ -166,6 +164,7 @@ Single styles
 
 .btn
 {
+    font-size: .8125em;
     color: #fff !important;
     background-color: #777370;
     border-color: #222;
@@ -181,6 +180,12 @@ Single styles
     border: 1px solid transparent;
     border-radius: .2em;
     text-decoration: none;
+}
+
+.aligncenter
+{
+    text-align: center;
+    vertical-align: middle;
 }
 
 .btn:hover
@@ -206,6 +211,21 @@ Single styles
     width: 100%;
     max-width: 100%;
     margin-bottom: 20px;
+}
+
+.table-edit
+{
+    border-top: 0;
+}
+
+.table-edit th
+{
+    border-bottom: 0;
+}
+
+.table-edit td
+{
+    border-bottom: 0;
 }
 
 .list-unstyled
@@ -251,5 +271,12 @@ Wide styles
         display: inline;
         padding: 0;
         border-bottom: 0;
+    }
+
+    .alignleft {
+        float: left;
+    }
+    .alignright {
+        float: right;
     }
 }

@@ -9,31 +9,31 @@
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:panelGrid columns="3" class="table table-striped">
-                    <h:outputText value="Currency:" />
+                <h:panelGrid columns="3" styleClass="table-edit">
+                    <h:outputText value="Currency:" styleClass="alignright"/>
                     <h:selectOneMenu id="currency" value="#{newOrder.currency}">
                         <f:selectItems value="#{currencyValues.values}" var="currency"
                                        itemValue="#{currency}" itemLabel="#{currency.label}"/>
                     </h:selectOneMenu>
                     <h:message for="currency" style="color: red" />
-                    <h:outputText value="Exchange Rate:" />
-                    <h:inputText value="#{newOrder.rate}" id="rate"/>
+                    <h:outputText value="Exchange Rate:" styleClass="alignright"/>
+                    <h:inputText value="#{newOrder.rate}" id="rate" size="10"/>
                     <h:message for="rate" style="color: red" />
-                    <h:outputText value="Amount:" />
-                    <h:inputText value="#{newOrder.maxAmount}" id="maxAmount"/>
+                    <h:outputText value="Amount:" styleClass="alignright"/>
+                    <h:inputText value="#{newOrder.maxAmount}" id="maxAmount" size="10"/>
                     <h:message for="maxAmount" style="color: red" />
-                    <h:outputText value="Order Type:" />
+                    <h:outputText value="Order Type:" styleClass="alignright"/>
                     <h:selectOneMenu id="exchangeOrderType" value="#{newOrder.orderType}">
                         <f:selectItems value="#{orderTypeValues.values}" var="orderType"
                                        itemValue="#{orderType}" itemLabel="#{orderType.label}"/>
                     </h:selectOneMenu>
                     <h:message for="exchangeOrderType" style="color: red" />
-                    <h:commandButton class="btn"
-                                     id="placeOrderButton"
-                                     action="myOrders"
-                                     value="Place Order"
-                                     actionListener="#{orderController.addOrder(newOrder)}"/>
                 </h:panelGrid>
+                <h:commandButton class="btn"
+                                 id="placeOrderButton"
+                                 action="myOrders"
+                                 value="Place Order"
+                                 actionListener="#{orderController.addOrder(newOrder)}"/>
             </h:form>
         </ui:define>
     </ui:composition>

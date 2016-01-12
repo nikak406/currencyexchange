@@ -62,7 +62,7 @@ public class LoginController implements Serializable{
 				cookiesHandler.addCookies(login.getLogin(), login.getPassword());
             }
             try {
-                fc.getExternalContext().redirect("/ce/home.xhtml");
+                fc.getExternalContext().redirect("/ce/allOrders.xhtml");
             } catch (IOException ignored) {}
         }
     }

@@ -14,41 +14,41 @@
         <div class="header">
             <h1 class="header-heading">Currency Exchange</h1>
         </div>
-        <div class="content">
+        <div class="content" align="center">
             <h:form>
-            <h:panelGrid columns="3">
-                <h:outputText value="Login:" />
+            <h:panelGrid columns="3" styleClass="table-edit">
+                <h:outputText value="Login:" styleClass="alignright"/>
                 <h:inputText value="#{newUser.login}" id="login" required="true"/>
                 <h:message for="login" style="color: red" />
-                <h:outputText value="Password:" />
+                <h:outputText value="Password:" styleClass="alignright"/>
                 <h:inputSecret value="#{newUser.password}" id="password" required="true">
                     <f:validateLength minimum="6"/>
                 </h:inputSecret>
                 <h:message for="password" style="color: red" />
-                <h:outputText value="Name:" />
+                <h:outputText value="Name:" styleClass="alignright"/>
                 <h:inputText value="#{newUser.name}" id="name"/>
                 <h:message for="name" style="color: red" />
-                <h:outputText value="Email:" />
+                <h:outputText value="Email:" styleClass="alignright"/>
                 <h:inputText value="#{newUser.email}" id="email"/>
                 <h:message for="email" style="color: red" />
-                <h:outputText value="Location:" />
+                <h:outputText value="Location:" styleClass="alignright"/>
                 <h:selectOneMenu id="location" value="#{newUser.location}">
                     <f:selectItems value="#{locations.locations}" var="location"
                                    itemValue="#{location}" itemLabel="#{location}"/>
                 </h:selectOneMenu>
                 <h:message for="location" style="color: red" />
-                <h:outputText value="Room:" />
+                <h:outputText value="Room:" styleClass="alignright"/>
                 <h:inputText value="#{newUser.room}" id="room"/>
                 <h:message for="room" style="color: red" />
-                <h:outputText value="Phone:" />
+                <h:outputText value="Phone:" styleClass="alignright"/>
                 <h:inputText value="#{newUser.phoneNumber}" id="phoneNumber"/>
                 <h:message for="phoneNumber" style="color: red" />
-                <h:commandButton class="btn"
-                                id="registerButton"
-                                 action="login"
-                                 value="Register"
-                                 actionListener="#{userController.register(newUser)}"/>
             </h:panelGrid>
+            <h:commandButton class="btn"
+                             id="registerButton"
+                             action="login"
+                             value="Register"
+                             actionListener="#{userController.register(newUser)}"/>
             </h:form>
         </div>
         <div id="bottom" class="footer">

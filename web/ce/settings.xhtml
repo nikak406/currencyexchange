@@ -9,31 +9,34 @@
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
             <h:form>
-                <h:panelGrid columns="3" class="table table-striped">
-                    <h:outputText value="Email:" />
+                <h:panelGrid columns="3" styleClass="table-edit">
+                    <h:outputText value="Email:" styleClass="alignright" />
                     <h:inputText value="#{editUser.email}" id="email">
                     </h:inputText>
                     <h:message for="email" style="color: red" />
-                    <h:outputText value="Location:" />
+                    <h:outputText value="Location:" styleClass="alignright"/>
                     <h:selectOneMenu id="location" value="#{editUser.location}">
                         <f:selectItems value="#{locations.locations}" var="location"
                                        itemValue="#{location}" itemLabel="#{location}"/>
                     </h:selectOneMenu>
                     <h:message for="location" style="color: red" />
-                    <h:outputText value="Room:" />
+                    <h:outputText value="Room:" styleClass="alignright"/>
                     <h:inputText value="#{editUser.room}" id="room">
                     </h:inputText>
                     <h:message for="room" style="color: red" />
-                    <h:outputText value="Phone:" />
+                    <h:outputText value="Phone:" styleClass="alignright"/>
                     <h:inputText value="#{editUser.phoneNumber}" id="phoneNumber">
                     </h:inputText>
                     <h:message for="phoneNumber" style="color: red" />
-                    <h:selectBooleanCheckbox value="#{editUser.notifyViaMail}" id="notifyViaMail"/>
-                    <h:outputText value="Notify me via email" />
+                    <h:outputText value=" "/>
+                    <h:panelGroup>
+                        <h:selectBooleanCheckbox value="#{editUser.notifyViaMail}" id="notifyViaMail"/>
+                        <h:outputText value="Notify me via email" />
+                    </h:panelGroup>
                 </h:panelGrid>
                 <h:commandButton  class="btn"
                                   id="saveChangesButton"
-                                 action="home"
+                                 action="allOrders"
                                  value="Save Changes"
                                  actionListener="#{userController.update(editUser)}"/>
             </h:form>

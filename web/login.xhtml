@@ -16,18 +16,18 @@
         <div class="header">
             <h1 class="header-heading">Currency Exchange</h1>
         </div>
-        <div class="content">
+        <div class="content" align="center">
             <h:form>
                 <h:messages style="color: green" globalOnly="true"/>
-                <h:panelGrid columns="3">
-                    <h:outputText value="Login:" />
+                <h:panelGrid columns="3" styleClass="table-edit">
+                    <h:outputText value="Login:" styleClass="alignright" />
                     <h:inputText value="#{login.login}" id="login" binding="#{loginController.loginField}"/>
                     <h:message for="login" style="color: red" />
-                    <h:outputText value="Password:" />
+                    <h:outputText value="Password:" styleClass="alignright"/>
                     <h:inputSecret value="#{login.password}" id="password" binding="#{loginController.passwordField}"/>
                     <h:message for="password" style="color: red" />
-                    <h:commandButton class="btn"
-                                    id="loginButton"
+                    <h:commandButton styleClass="alignright btn"
+                                     id="loginButton"
                                      action="login"
                                      value="Submit"
                                      actionListener="#{loginController.login(login)}"/>
@@ -36,7 +36,8 @@
                         <h:outputLabel value="Remember"/>
                     </h:panelGroup>
                 </h:panelGrid>
-                <h:outputLink value="/register.xhtml">Register</h:outputLink>
+                <h:outputText value="Don't have an account?"/>
+                <h:outputLink value="/register.xhtml" class="btn">Register</h:outputLink>
             </h:form>
         </div>
         <div id="bottom" class="footer">
