@@ -8,6 +8,7 @@
 <h:body>
     <ui:composition template="pattern.xhtml">
         <ui:define name="content">
+            <h:outputScript library="js" name="moneycalc.js"/>
             <h:dataTable value="#{transactionController.newTransaction}" var="order" class="table table-striped">
                 <h:column>
                     <f:facet name="header">Currency</f:facet>
@@ -27,7 +28,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Rate</f:facet>
-                    #{order.rate}
+                    <h:outputText value="#{order.rate}" id="rate"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Date</f:facet>
@@ -44,10 +45,11 @@
             </h:dataTable>
             <br/>
             <h:form>
-                <h:panelGrid columns="4" styleClass="table-edit">
+                <h:panelGrid columns="5" styleClass="table-edit">
                     <h:outputText value="Amount:" />
-                    <h:inputText value="#{intBean.value}" id="amount"/>
+                    <h:inputText value="#{intBean.value}" onkeyup="myHandler()" size="5" id="amount"/>
                     <h:message for="amount" style="color: red" />
+                    <h:outputText value="" id="result"/>
                     <h:commandButton  class="btn"
                                       id="commitTransactionButton"
                                      action="transactions"
