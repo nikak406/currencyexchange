@@ -8,7 +8,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//TODO BUG testing required, probably functional is doing wrong
 @Stateless
 public class CookiesHandler {
 
@@ -57,10 +56,14 @@ public class CookiesHandler {
 		Cookie[] cookies = request.getCookies();
 		for (Cookie cookie : cookies) {
 			if (cookie.getName().equals("login")) {
+				cookie.setValue("");
+				cookie.setPath("/");
 				cookie.setMaxAge(ZERO);
 				response.addCookie(cookie);
 			}
 			if (cookie.getName().equals("password")) {
+				cookie.setValue("");
+				cookie.setPath("/");
 				cookie.setMaxAge(ZERO);
 				response.addCookie(cookie);
 			}
