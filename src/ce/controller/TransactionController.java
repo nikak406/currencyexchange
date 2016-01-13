@@ -30,6 +30,9 @@ public class TransactionController {
 	@EJB
     NewTransaction newTransaction;
 
+	@EJB
+	MailSender mailSender;
+
 	private List<Transaction> getTransactions(){
 		return transactionDAO.getTransactions();
 	}
@@ -43,7 +46,7 @@ public class TransactionController {
 						|| transaction.getOrder().getDealer().equals(loggedInUser))
 				.collect(Collectors.toList());
 	}
-// TODO Mail
+
 	public void addTransaction(IntBean intBean){
 		Order order = newTransaction.getOrder();
 		if (order == null) return;
@@ -61,7 +64,7 @@ public class TransactionController {
 		transaction.setDate(now);
 		transaction.setOrder(order);
 		transactionDAO.registerTransaction(transaction);
-		//MailSender.sendMail(transaction);
+		mailSender.sendMail(transaction);
 	}
 
 	public void addTransactionOrder(Order order){

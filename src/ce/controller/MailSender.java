@@ -3,11 +3,13 @@ package ce.controller;
 import ce.model.Transaction;
 import ce.model.User;
 
+import javax.ejb.Stateless;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
+@Stateless
 public class MailSender {
 
     public static final String FROM = "currencyexchange@mail.com";
@@ -18,24 +20,25 @@ public class MailSender {
             "Email: %s, Tel: %s\n" +
             "Currency Exchange";
 
+    public static final String USERNAME = "currencyexchangeteam@yahoo.com";
+    public static final String PASSWORD = "cUr5encYE%change";
+    public static final String AUTH = "true";
+    public static final String STARTTLS = "true";
+    public static final String HOST = "smtp.mail.yahoo.com";
+    public static final String PORT = "587";
+
+
     private Transaction transaction;
 
-    public MailSender(Transaction transaction) {
-        this.transaction = transaction;
-    }
-
-    static void sendMail(Transaction transaction){
+    public void sendMail(Transaction transaction){
         User dealer = transaction.getOrder().getDealer();
         if (dealer.getNotifyViaMail()){
-            new MailSender(transaction).sendMail();
+            this.transaction = transaction;
+            sendMail();
         }
-
     }
 
     private void sendMail() {
-        final String username = "currencyexchange@mail.com";
-        final String password = "password";
-
         String emailTo = transaction.getOrder().getDealer().getEmail();
         String orderInfo = transaction.getOrder().toString();
         String customerName = transaction.getCustomer().getName();
@@ -49,15 +52,15 @@ public class MailSender {
                 "" + transactionAmount + ' ' + currency, customerEmail, customerPhone);
 
         Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.mail.com");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.auth", AUTH);
+        props.put("mail.smtp.starttls.enable", STARTTLS);
+        props.put("mail.smtp.host", HOST);
+        props.put("mail.smtp.port", PORT);
 
         Session session = Session.getInstance(props,
                 new Authenticator() {
                     protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
+                        return new PasswordAuthentication(USERNAME, PASSWORD);
                     }
                 });
 
@@ -70,6 +73,7 @@ public class MailSender {
             message.setText(body);
             Transport.send(message);
         } catch (MessagingException ignored) {
+            ignored.printStackTrace();
         }
     }
 }
